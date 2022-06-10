@@ -9,16 +9,12 @@ import { UserDashboardComponent } from '../../views/user-dashboard/user-dashboar
 import { USER_DASHBOARD_COMPONENT_ROUTES } from '../subroutes/user-dashboard.routes';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        USER_DASHBOARD_COMPONENT_ROUTES
-    ],
-    declarations: [
-        UserDashboardComponent,
-        NavbarComponent
-    ]
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    USER_DASHBOARD_COMPONENT_ROUTES,
+  ],
+  declarations: [UserDashboardComponent, NavbarComponent],
 })
-
-export class UserDashboardModule { }
+export class UserDashboardModule {}

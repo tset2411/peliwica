@@ -6,17 +6,16 @@ import { VerifyComponent } from '../../views/user-dashboard/verify/verify.compon
 import { VERIFY_COMPONENT_ROUTES } from '../subroutes/verify.routes';
 
 /* Plugins */
-import { AccordionModule } from 'ngx-bootstrap';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        VERIFY_COMPONENT_ROUTES,
-        AccordionModule.forRoot()
-    ],
-    declarations: [VerifyComponent]
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    VERIFY_COMPONENT_ROUTES,
+    AccordionModule.forRoot(),
+  ],
+  declarations: [VerifyComponent],
 })
-
 export class VerifyModule {}

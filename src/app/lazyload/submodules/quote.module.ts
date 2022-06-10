@@ -8,19 +8,17 @@ import { QUOTES_COMPONENT_ROUTES } from '../subroutes/quote.routes';
 import { OrderBy } from '../../pipes/orderbypipe';
 
 /* Plugins */
-import { BsDatepickerModule } from 'ngx-bootstrap';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        QUOTES_COMPONENT_ROUTES,
-        BsDatepickerModule.forRoot()
-    ],
-    declarations: [QuoteComponent, OrderBy],
-    providers: [
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    QUOTES_COMPONENT_ROUTES,
+    BsDatepickerModule.forRoot(),
+  ],
+  declarations: [QuoteComponent, OrderBy],
+  providers: [],
 })
-
 export class QuoteModule {}

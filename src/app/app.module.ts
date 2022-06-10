@@ -17,30 +17,28 @@ import { WorkflowService } from './workflow/workflow.service';
 import { WorkflowGuard } from './workflow/workflow-guard.service';
 import { SharedService } from './services/shared.service';
 import { PostalCodeService } from './services/postalcode.service';
-import {} from "reflect-metadata";
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HeaderComponentComponent,
-        FooterComponentComponent
-    ],
-    imports: [
-        BrowserModule,
-        HttpModule,
-        RouterModule.forRoot(MAIN_ROUTES, { useHash: true })
-    ],
-    providers: [
-        FormDataService,
-        WorkflowService,
-        WorkflowGuard,
-        SharedService,
-        PostalCodeService
-    ],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    HeaderComponentComponent,
+    FooterComponentComponent,
+  ],
+  imports: [
+    BrowserModule,
+    HttpModule,
+    RouterModule.forRoot(MAIN_ROUTES, { useHash: true }),
+  ],
+  providers: [
+    FormDataService,
+    WorkflowService,
+    WorkflowGuard,
+    SharedService,
+    PostalCodeService,
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
-
+export class AppModule {}
 
 // Usefull Links
 // https://www.cc28tech.com/angular-multi-step-wizard-part-1/

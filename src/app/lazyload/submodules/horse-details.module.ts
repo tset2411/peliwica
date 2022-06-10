@@ -6,20 +6,19 @@ import { HorseDetailsComponent } from '../../views/user-dashboard/horse-details/
 import { HORSE_DETAILS_COMPONENT_ROUTES } from '../subroutes/horse-details.routes';
 
 /* Plugins */
-import { AccordionModule } from 'ngx-bootstrap';
-import { BsDatepickerModule } from 'ngx-bootstrap';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        HORSE_DETAILS_COMPONENT_ROUTES,
-        AccordionModule.forRoot(),
-        BsDatepickerModule.forRoot()
-    ],
-    declarations: [HorseDetailsComponent],
-    providers: []
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HORSE_DETAILS_COMPONENT_ROUTES,
+    AccordionModule.forRoot(),
+    BsDatepickerModule.forRoot(),
+  ],
+  declarations: [HorseDetailsComponent],
+  providers: [],
 })
-
 export class HorseDetailsModule {}

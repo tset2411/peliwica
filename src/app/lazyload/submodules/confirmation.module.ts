@@ -6,17 +6,16 @@ import { ConfirmationComponent } from '../../views/user-dashboard/confirmation/c
 import { CONFIRMATION_COMPONENT_ROUTES } from '../subroutes/confirmation.routes';
 
 /* Plugins */
-import { AccordionModule } from 'ngx-bootstrap';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        CONFIRMATION_COMPONENT_ROUTES,
-        AccordionModule.forRoot()
-    ],
-    declarations: [ConfirmationComponent]
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CONFIRMATION_COMPONENT_ROUTES,
+    AccordionModule.forRoot(),
+  ],
+  declarations: [ConfirmationComponent],
 })
-
 export class ConfirmationModule {}

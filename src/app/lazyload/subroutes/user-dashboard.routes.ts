@@ -7,21 +7,63 @@ import { UserDashboardComponent } from '../../views/user-dashboard/user-dashboar
 import { WorkflowGuard } from '../../workflow/workflow-guard.service';
 
 const routes: Routes = [
-    {
-        path: '',
-        component: UserDashboardComponent,
-        children: [
-            { path: '', redirectTo: ROUTS_CONSTANTS.QUOTE, pathMatch: 'full' },
-            { path: ROUTS_CONSTANTS.QUOTE, loadChildren: 'app/lazyload/submodules/quote.module#QuoteModule' },
-            { path: ROUTS_CONSTANTS.POLICY_HOLDER, loadChildren: 'app/lazyload/submodules/policy-holder.module#PolicyHolderModule', canActivate: [WorkflowGuard] },
-            { path: ROUTS_CONSTANTS.HORSE_DETAILS, loadChildren: 'app/lazyload/submodules/horse-details.module#HorseDetailsModule', canActivate: [WorkflowGuard] },
-        	{ path: ROUTS_CONSTANTS.STATEMENT_OF_FACT, loadChildren: 'app/lazyload/submodules/statement-of-fact.module#StatementOfFactModule', canActivate: [WorkflowGuard] },
-            { path: ROUTS_CONSTANTS.VERIFY, loadChildren: 'app/lazyload/submodules/verify.module#VerifyModule', canActivate: [WorkflowGuard] },
-            { path: ROUTS_CONSTANTS.CONFIRMATION, loadChildren: 'app/lazyload/submodules/confirmation.module#ConfirmationModule', canActivate: [WorkflowGuard] }
-        ]
-    }
+  {
+    path: '',
+    component: UserDashboardComponent,
+    children: [
+      { path: '', redirectTo: ROUTS_CONSTANTS.QUOTE, pathMatch: 'full' },
+      {
+        path: ROUTS_CONSTANTS.QUOTE,
+        loadChildren: () =>
+          import('../../../app/lazyload/submodules/quote.module').then(
+            (x) => x.QuoteModule
+          ),
+      },
+      {
+        path: ROUTS_CONSTANTS.POLICY_HOLDER,
+        loadChildren: () =>
+          import('../../../app/lazyload/submodules/policy-holder.module').then(
+            (x) => x.PolicyHolderModule
+          ),
+        canActivate: [WorkflowGuard],
+      },
+      {
+        path: ROUTS_CONSTANTS.HORSE_DETAILS,
+        loadChildren: () =>
+          import('../../../app/lazyload/submodules/horse-details.module').then(
+            (x) => x.HorseDetailsModule
+          ),
+        canActivate: [WorkflowGuard],
+      },
+      {
+        path: ROUTS_CONSTANTS.STATEMENT_OF_FACT,
+        loadChildren: () =>
+          import(
+            '../../../app/lazyload/submodules/statement-of-fact.module'
+          ).then((x) => x.StatementOfFactModule),
+        canActivate: [WorkflowGuard],
+      },
+      {
+        path: ROUTS_CONSTANTS.VERIFY,
+        loadChildren: () =>
+          import('../../../app/lazyload/submodules/verify.module').then(
+            (x) => x.VerifyModule
+          ),
+        canActivate: [WorkflowGuard],
+      },
+      {
+        path: ROUTS_CONSTANTS.CONFIRMATION,
+        loadChildren: () =>
+          import('../../../app/lazyload/submodules/confirmation.module').then(
+            (x) => x.ConfirmationModule
+          ),
+        canActivate: [WorkflowGuard],
+      },
+    ],
+  },
 ];
 
 // canActivate: [WorkflowGuard]
 
-export const USER_DASHBOARD_COMPONENT_ROUTES: ModuleWithProviders = RouterModule.forChild(routes);
+export const USER_DASHBOARD_COMPONENT_ROUTES: ModuleWithProviders<any> =
+  RouterModule.forChild(routes);

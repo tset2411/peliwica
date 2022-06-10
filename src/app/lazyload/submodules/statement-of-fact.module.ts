@@ -6,17 +6,16 @@ import { StatementOfFactComponent } from '../../views/user-dashboard/statement-o
 import { STATEMENT_OF_FACT_COMPONENT_ROUTES } from '../subroutes/statement-of-fact.routes';
 
 /* Plugins */
-import { AccordionModule } from 'ngx-bootstrap';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        STATEMENT_OF_FACT_COMPONENT_ROUTES,
-        AccordionModule.forRoot()
-    ],
-    declarations: [StatementOfFactComponent]
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    STATEMENT_OF_FACT_COMPONENT_ROUTES,
+    AccordionModule.forRoot(),
+  ],
+  declarations: [StatementOfFactComponent],
 })
-
 export class StatementOfFactModule {}
