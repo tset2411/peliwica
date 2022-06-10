@@ -1,0 +1,755 @@
+<section class="obtain-quote-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="text-center"><span>Step 3</span>Full Risk Details</h2>
+            </div>
+        </div>
+        <div class="row">
+            <form [formGroup]="horseDetailsForm" novalidate>
+                <div class="col-sm-12">
+                    <!-- Common Items for all horse will come here -->
+                    <!-- Saddlery Items -->
+                    <div class="panel panel-default" *ngIf="formDataService.quoteFormData.saddleryOrTrack">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Is any single item of saddley/ tack valued at £500 or more?</label><br>
+                                        <div class="checkbox">
+                                            <input class="magic-checkbox" type="checkbox" name="isLoanYes"
+                                            id="singleItemYes_checkBox"
+                                            formControlName="isSingleItemYes"
+                                            (change)="horseDetailsForm.controls['isSingleItemNo'].setValue(!horseDetailsForm.controls['isSingleItemYes'].value);"
+                                            [checked]="horseDetailsForm.controls['isSingleItemYes'].value ? 'check' : null">
+                                            <label for="singleItemYes_checkBox"></label>
+                                            <label class="text" for="singleItemYes_checkBox">Yes</label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <input class="magic-checkbox" type="checkbox" name="isLoanYes"
+                                            id="singleItemNo_checkBox"
+                                            formControlName="isSingleItemNo"
+                                            (change)="horseDetailsForm.controls['isSingleItemYes'].setValue(!horseDetailsForm.controls['isSingleItemNo'].value);"
+                                            [checked]="horseDetailsForm.controls['isSingleItemNo'].value ? 'check' : null">
+                                            <label for="singleItemNo_checkBox"></label>
+                                            <label class="text" for="singleItemNo_checkBox">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="horseDetailsForm.controls['isSingleItemYes'].value">
+                                <div formArrayName="saddleyItemsArray" *ngFor="let saddleyItemsControl of horseDetailsForm['controls'].saddleyItemsArray['controls']; let saddleyItemsIndex=index; let saddleyItemsFirstIndex=first; ">
+                                    <div class="saddley-items" [formGroupName]="saddleyItemsIndex">
+                                        
+                                        <h3>Saddley Item #{{ saddleyItemsIndex + 1 }}<button *ngIf="!saddleyItemsFirstIndex" class="btn pull-right btn-sm btn-danger"(click)="removeItemsToSaddleyItemsArray(saddleyItemsIndex)"><i class="fa fa-times"></i></button>
+                                        </h3>
+                                        
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Description</label>
+                                                    <input type="text" name="" class="form-control" formControlName="saddleryDescription">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Make/Model</label>
+                                                    <input type="text" name="" class="form-control" formControlName="saddleryMake">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Sum Insured (£)</label>
+                                                    <input type="text" name="" class="form-control" formControlName="saddlerySumInsured">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Purchase Price(£)</label>
+                                                    <input type="text" name="" class="form-control" formControlName="saddleryPurchasePrice">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Colour</label>
+                                                    <input type="text" name="" class="form-control" formControlName="saddleryColour">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-right">
+                                    <button class="btn btn-hollow-grey"
+                                    (click)="addItemsToSaddleyItemsArray()">Add on Additional Items
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Trailers Items -->
+                    <!-- Trailers & Horse drown vehicles Section -->
+                    <div class="panel panel-default" *ngIf="formDataService.quoteFormData.isTrailersOrHorseDrawnVehicles">
+                        <div class="panel-body">
+                            <h3>Horse Trailer(s)</h3>
+                            <div formArrayName="trailerItemsArray" *ngFor="let trailerItemsControl of horseDetailsForm['controls'].trailerItemsArray['controls']; let trailerItemsIndex=index; let trailerItemsFirstIndex=first; ">
+                                <div class="saddley-items" [formGroupName]="trailerItemsIndex">
+
+                                    <h3>Trailer #{{ trailerItemsIndex + 1 }}<button *ngIf="!trailerItemsFirstIndex" class="btn pull-right btn-sm btn-danger"(click)="removeItemsToTrailerItemsArray(trailerItemsIndex)"><i class="fa fa-times"></i></button>
+                                    </h3>
+
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Chassis number</label>
+                                                <input type="text" name="" class="form-control" formControlName="vehiclesChassisNumber">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Make/Model</label>
+                                                <input type="text" name="" class="form-control" formControlName="vehiclesMake">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Year of manufacturer</label>
+                                                <input type="text" name="" class="form-control" formControlName="vehiclesYearManufacturer">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Purchase date</label>
+                                                <input type="text" name="" class="form-control" formControlName="vehiclesPurchaseDate"
+                                                bsDatepicker #vehiclesPurchaseDate="bsDatepicker"
+                                                [maxDate]="MAX_DATE" (bsValue)="MAX_DATE"
+                                                [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Purchase Price (£)</label>
+                                                <input type="text" name="" class="form-control" formControlName="vehiclesPurchasePrice">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Sum Insured (£)</label>
+                                                <input type="text" name="" class="form-control" formControlName="vehiclesSumInsured">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <button class="btn btn-hollow-grey"
+                                (click)="addItemsToTrailerItemsArray()">Add on Additional Trailer
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Horse Details Accordians -->
+                    <div formArrayName="horseDetailsArray" *ngFor="let horseDetailsControl of horseDetailsForm['controls'].horseDetailsArray['controls'];
+                        let horseDetailsIndex = index; let firstIndex = first ">
+                        
+                        <!-- Accordian Header -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="panel-heading" role="tab" id="{{ 'heading'  + horseDetailsIndex}}">
+                                    <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" id="{{ 'collapse'  + horseDetailsIndex}}"
+                                        href="#collapseOne{{horseDetailsIndex}}" aria-expanded="true" attr.aria-controls="collapseOne{{horseDetailsIndex}}">
+                                        Horse {{ horseDetailsIndex + 1 }} Details<i class="fa fa-plus" aria-hidden="true"></i> <i class="fa fa-minus"></i>
+                                    </a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Accordian Body -->
+                        <div id="{{ 'collapseOne'  + horseDetailsIndex}}" class="panel-collapse collapse in" role="tabpanel"
+                            attr.aria-controls="heading{{horseDetailsIndex}}" [formGroupName]="horseDetailsIndex">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Name of Horse *</label>
+                                                <input type="text" name="" class="form-control" formControlName="name"
+                                                [ngClass]="{'has-error' : horseDetailsControl.controls['name'].touched && (!horseDetailsControl.controls['name'].valid ) }">
+                                            </div>
+                                            <label class="has-error" *ngIf="horseDetailsControl.controls['name'].hasError('required') &&
+                                                horseDetailsControl.controls['name'].touched">
+                                                Name is required
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Sex of Horse *</label>
+                                                <select class="selectpicker" formControlName="sex" [attr.data-size]="defaultDropDownSize">
+                                                    <option *ngFor="let sex of sharedService.sexOfHorse"
+                                                    [ngValue]="sex" >{{ sex.value }}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Passport Number *</label>
+                                                <input type="text" name="" value="" class="form-control" formControlName="passportNo"
+                                                [ngClass]="{'has-error' : horseDetailsControl.controls['passportNo'].touched && (!horseDetailsControl.controls['passportNo'].valid ) }">
+                                            </div>
+                                            <label class="has-error" *ngIf="horseDetailsControl.controls['passportNo'].hasError('required') &&
+                                                horseDetailsControl.controls['passportNo'].touched">
+                                                Passport number is required!
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Microchip Number</label>
+                                                <input type="text" name="" value="" class="form-control"
+                                                formControlName="microChipNo">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Color of Horse *</label>
+                                                <select class="selectpicker" formControlName="colorOfHorse"
+                                                    [attr.data-size]="defaultDropDownSize">
+                                                    <option *ngFor="let color of sharedService.colorOfHorse"
+                                                    [ngValue]="color" >{{ color.value }}</option>
+                                                </select>
+                                            </div>
+                                            <label class="has-error" *ngIf="horseDetailsControl.controls['colorOfHorse'].hasError('required')">
+                                                Passport number is required!
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Breed of Horse *</label>
+                                                <select class="selectpicker" formControlName="breed" [attr.data-size]="defaultDropDownSize">
+                                                    <option *ngFor="let breed of sharedService.breedOfHorse"
+                                                    [ngValue]="breed" >{{ breed.value }}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Height of Horse *</label>
+                                                <!-- <input type="text" name="" value="" class="form-control" formControlName="height"> -->
+                                                <select class="selectpicker" formControlName="height" [attr.data-size]="defaultDropDownSize">
+                                                    <option *ngFor="let height of sharedService.heightOfHorse"
+                                                    [ngValue]="height" >{{ height.value }}</option>
+                                                </select>
+                                            </div>
+                                            <label class="has-error" *ngIf="horseDetailsControl.controls['height'].hasError('required') &&
+                                                horseDetailsControl.controls['height'].touched">
+                                                Height is required
+                                            </label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Do you own the Horse *
+                                                    <a *ngIf="!horseDetailsControl.controls['isOwnHorseYes'].value" href="javascript:void(0)" title="{{ IS_NOT_OWNER_TOOLTIP }}"><i class="fa fa-question-circle fa-lg"></i></a>
+                                                </label><br>
+                                                <div class="checkbox">
+                                                    <input class="magic-checkbox" type="checkbox" name="isLoanYes"
+                                                    id="{{ 'ownHorseYes'  + horseDetailsIndex}}"
+                                                    formControlName="isOwnHorseYes"
+                                                    (change)="horseDetailsControl.controls['isOwnHorseNo'].setValue(!(horseDetailsControl.controls['isOwnHorseYes'].value));
+                                                    onIsOwnerYesChange(horseDetailsControl.controls['isOwnHorseYes'].value, horseDetailsIndex);"
+                                                    [checked]="horseDetailsControl.controls['isOwnHorseYes']['value'] ? 'check' : null">
+                                                    <label for="{{ 'ownHorseYes'  + horseDetailsIndex}}"></label>
+                                                    <label class="text" for="{{ 'ownHorseYes'  + horseDetailsIndex}}">Yes</label>
+                                                </div>
+                                                <div class="checkbox">
+                                                    <input class="magic-checkbox" type="checkbox" name="isLoanYes"
+                                                    id="{{ 'ownHorseNo'  + horseDetailsIndex}}"
+                                                    formControlName="isOwnHorseNo"
+                                                    (change)=" horseDetailsControl.controls['isOwnHorseYes'].setValue(!(horseDetailsControl.controls['isOwnHorseNo'].value));
+                                                    onIsOwnerNoChange(horseDetailsControl.controls['isOwnHorseYes'].value, horseDetailsIndex);"
+                                                    [checked]="horseDetailsControl.controls['isOwnHorseNo']['value'] ? 'check' : null">
+                                                    <label for="{{ 'ownHorseNo'  + horseDetailsIndex}}"></label>
+                                                    <label class="text" for="{{ 'ownHorseNo'  + horseDetailsIndex}}">No</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Custom Policy Holder Details Start-->
+                                    <div *ngIf="horseDetailsControl.controls['isOwnHorseNo'].value">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Title *</label>
+                                                    <select class="selectpicker" formControlName= "title">
+                                                        <option *ngFor= "let prefix of sharedService.namePrefix"
+                                                        [ngValue]="prefix">{{prefix.value}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">First Name *</label>
+                                                    <input type="text" name="" class="form-control" formControlName="firstName"
+                                                    [ngClass]="{'has-error' : horseDetailsControl.controls['firstName'].touched && (!horseDetailsControl.controls['firstName'].valid ) }">
+                                                </div>
+                                                <label class="has-error" *ngIf="horseDetailsControl.controls['firstName'].hasError('required') &&
+                                                    horseDetailsControl.controls['firstName'].touched">
+                                                    First name is required!
+                                                </label>
+                                                <label class="has-error" *ngIf="horseDetailsControl.controls['firstName'].hasError('maxlength') &&
+                                                    horseDetailsControl.controls['firstName'].touched">
+                                                    The first name can be 30 characters long!
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Last Name *</label>
+                                                    <input type="text" name="" class="form-control" formControlName="lastName"
+                                                    [ngClass]="{'has-error' : horseDetailsControl.controls['lastName'].touched && (!horseDetailsControl.controls['lastName'].valid ) }">
+                                                </div>
+                                                <label class="has-error" *ngIf="horseDetailsControl.controls['lastName'].hasError('required') &&
+                                                    horseDetailsControl.controls['lastName'].touched">
+                                                    Last name is required!
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Middle Name</label>
+                                                    <input type="text" name="" class="form-control" formControlName="middleName">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Date of Birth Policyholder *</label>
+                                                    <input type="text" name="" #dpDOB="bsDatepicker"
+                                                    class="form-control" formControlName="dateOfBirth" bsDatepicker
+                                                    (bsValue)="birthDateMaxDate"
+                                                    [maxDate]="birthDateMaxDate"
+                                                    [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+                                                    [ngClass]="{'has-error' : horseDetailsControl.controls['dateOfBirth'].touched && (!horseDetailsControl.controls['dateOfBirth'].valid ) }">
+                                                </div>
+                                                <label class="has-error" *ngIf="horseDetailsControl.controls['dateOfBirth'].hasError('required') &&
+                                                    horseDetailsControl.controls['dateOfBirth'].touched">
+                                                    Date of birth is required!
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Occupation *</label>
+                                                    <input type="text" name="" class="form-control"  formControlName="occupation"
+                                                    [ngClass]="{'has-error' : horseDetailsControl.controls['occupation'].touched && (!horseDetailsControl.controls['occupation'].valid ) }">
+                                                </div>
+                                                <label class="has-error" *ngIf="horseDetailsControl.controls['occupation'].hasError('required') &&
+                                                    horseDetailsControl.controls['occupation'].touched">
+                                                    Occupation is required!
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Email Address *</label>
+                                                    <input type="text" name="" class="form-control" formControlName="email"
+                                                    [ngClass]="{'has-error' : horseDetailsControl.controls['email'].touched && (!horseDetailsControl.controls['email'].valid ) }">
+                                                </div>
+                                                <label class="has-error" *ngIf="horseDetailsControl.controls['email'].hasError('required') &&
+                                                    horseDetailsControl.controls['email'].touched">
+                                                    Email address is required!
+                                                </label>
+                                                <label class="has-error" *ngIf="horseDetailsControl.controls['email'].hasError('pattern') &&
+                                                    horseDetailsControl.controls['email'].touched">
+                                                    Invalid email!
+                                                </label>
+                                                <label class="has-error" *ngIf="horseDetailsControl.controls['email'].hasError('maxlength') &&
+                                                    horseDetailsControl.controls['email'].touched">
+                                                    Email can be 40 characters long!
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Confirm Email Address *</label>
+                                                    <input type="text" name="" class="form-control" formControlName="confirmEmail"
+                                                    (blur)="validateEmail(horseDetailsIndex)"
+                                                    [ngClass]="{'has-error' : horseDetailsControl.controls['confirmEmail'].touched && (!horseDetailsControl.controls['confirmEmail'].valid ) }">
+                                                </div>
+                                                <label class="has-error" *ngIf="horseDetailsControl.controls['confirmEmail'].hasError('required') &&
+                                                    horseDetailsControl.controls['confirmEmail'].touched">
+                                                    Confirm email is required!
+                                                </label>
+                                                <label class="has-error" *ngIf="horseDetailsControl.controls['confirmEmail'].hasError('pattern') &&
+                                                    horseDetailsControl.controls['confirmEmail'].touched">
+                                                    Invalid email!
+                                                </label>
+                                                <label class="has-error" *ngIf="confirmEmailErrorExist && !horseDetailsControl.controls['confirmEmail'].hasError('pattern')">
+                                                    Email does't matched.
+                                                </label>
+                                                <label class="has-error" *ngIf="horseDetailsControl.controls['confirmEmail'].hasError('maxlength') &&
+                                                    horseDetailsControl.controls['confirmEmail'].touched">
+                                                    Email can be 40 characters long!
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Mobile Contact Number *</label>
+                                                    <input type="text" name="" class="form-control" formControlName="mobileContactNumber"
+                                                    (keypress)="checkNumberFormat($event)"
+                                                    [ngClass]="{'has-error' : horseDetailsControl.controls['mobileContactNumber'].touched && (!horseDetailsControl.controls['mobileContactNumber'].valid ) }">
+                                                </div>
+                                                <label class="has-error" *ngIf="horseDetailsControl.controls['mobileContactNumber'].hasError('required') &&
+                                                    horseDetailsControl.controls['mobileContactNumber'].touched">
+                                                    Mobile contact number is required!
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Home Contact Number</label>
+                                                    <input type="text" name="" class="form-control" formControlName="homeContactNumber"
+                                                    (keypress)="checkNumberFormat($event)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group dropdown-main">
+                                                    <label class="control-label">Postcode *</label>
+                                                    <input type="text" name="" class="form-control" formControlName="ownerPostCode"
+                                                    (keyup)="checkOwnerAddressFromPostCode(horseDetailsIndex)"
+                                                    [ngClass]="{'has-error' : horseDetailsControl.controls['ownerPostCode'].touched && (!horseDetailsControl.controls['ownerPostCode'].valid ) }">
+
+                                                    <div *ngIf="ownerPostCodeSearchedAddress.length > 0" class="address-dropdown">
+                                                        <ul class="list-unstyled" *ngIf="ownerPostCodeSearchedAddress.length > 0">
+                                                            <li *ngFor = "let address of ownerPostCodeSearchedAddress; let currentIndex = index " 
+                                                            (click)="setOwnerPostCodeSearchedAddress(horseDetailsIndex, currentIndex)">
+                                                            <i class="fa fa-map-marker fa-2x"></i>
+                                                                {{ createAndGetOwnerPostAddress(currentIndex) }}
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <!-- <div *ngIf="ownerPostCodeSearchedAddress" (click)="setOwnerPostCodeSearchedAddress(horseDetailsIndex)" class="address-dropdown"><i class="fa fa-map-marker fa-2x"></i> {{ ownerPostCodeSearchedAddress.building_number + ", "
+                                                    + ownerPostCodeSearchedAddress.line_2 + ", " + ownerPostCodeSearchedAddress.line_3  + ", " + ownerPostCodeSearchedAddress.country}}</div> -->
+                                                </div>
+                                                <label class="has-error" *ngIf="horseDetailsControl.controls['ownerPostCode'].hasError('required') &&
+                                                    horseDetailsControl.controls['ownerPostCode'].touched">
+                                                    Postcode is required!
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Flat Number</label>
+                                                    <input type="text" name="" class="form-control" formControlName="ownerFlatNumber">
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">House Name or Number</label>
+                                                    <input type="text" name="" class="form-control" formControlName="ownerHouseNumber">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Address Line 1 *</label>
+                                                    <input type="text" name="" class="form-control" formControlName="ownerAddressLine1"
+                                                    [ngClass]="{'has-error' : horseDetailsControl.controls['ownerAddressLine1'].touched && (!horseDetailsControl.controls['ownerAddressLine1'].valid ) }">
+                                                </div>
+                                                <label class="has-error" *ngIf="horseDetailsControl.controls['ownerAddressLine1'].hasError('required') &&
+                                                    horseDetailsControl.controls['ownerAddressLine1'].touched">
+                                                    Address is required!
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Address Line 2</label>
+                                                    <input type="text" name="" class="form-control" formControlName="ownerAddressLine2"
+                                                    [ngClass]="{'has-error' : horseDetailsControl.controls['ownerAddressLine2'].touched && (!horseDetailsControl.controls['ownerAddressLine2'].valid ) }">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Town *</label>
+                                                    <input type="text" name="" class="form-control" formControlName="ownerTown"
+                                                    [ngClass]="{'has-error' : horseDetailsControl.controls['ownerTown'].touched && (!horseDetailsControl.controls['ownerTown'].valid ) }">
+                                                </div>
+                                                <label class="has-error" *ngIf="horseDetailsControl.controls['ownerTown'].hasError('required') &&
+                                                    horseDetailsControl.controls['ownerTown'].touched">
+                                                    Town is required!
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Country *</label>
+                                                    <input type="text" name="" class="form-control" formControlName="ownerCountry"
+                                                    [ngClass]="{'has-error' : horseDetailsControl.controls['ownerCountry'].touched && (!horseDetailsControl.controls['ownerCountry'].valid ) }">
+                                                </div>
+                                                <label class="has-error" *ngIf="horseDetailsControl.controls['ownerCountry'].hasError('required') &&
+                                                    horseDetailsControl.controls['ownerCountry'].touched">
+                                                    Country is required!
+                                                </label>
+                                            </div>
+                                        </div>
+                                        </div><!-- Custom Policy Holder Details End-->
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Does the stable address differ from the Policy Holder address? *</label><br>
+                                                    <div class="checkbox">
+                                                        <input class="magic-checkbox" type="checkbox" name="isLoanYes"
+                                                        id="{{ 'sameAdrees'  + horseDetailsIndex}}"
+                                                        formControlName="isSameAdresYes"
+                                                        (change)="horseDetailsControl.controls['isSameAdresNo'].setValue(!horseDetailsControl.controls['isSameAdresYes'].value);
+                                                        onIsSameAddressYesChange(horseDetailsControl.controls['isSameAdresYes'].value, horseDetailsIndex);"
+                                                        [checked]="horseDetailsControl.controls['isSameAdresYes'].value ? 'check' : null">
+                                                        <label for="{{ 'sameAdrees'  + horseDetailsIndex}}"></label>
+                                                        <label class="text" for="{{ 'sameAdrees'  + horseDetailsIndex}}">Yes</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <input class="magic-checkbox" type="checkbox" name="isLoanYes"
+                                                        id="{{ 'nottSameAdress'  + horseDetailsIndex}}"
+                                                        formControlName="isSameAdresNo"
+                                                        (change)="horseDetailsControl.controls['isSameAdresYes'].setValue(!horseDetailsControl.controls['isSameAdresNo'].value);
+                                                        onIsSameAddressNoChange(horseDetailsControl.controls['isSameAdresYes'].value, horseDetailsIndex);"
+                                                        [checked]="horseDetailsControl.controls['isSameAdresNo'].value ? 'check' : null">
+                                                        <label for="{{ 'nottSameAdress'  + horseDetailsIndex}}"></label>
+                                                        <label class="text" for="{{ 'nottSameAdress'  + horseDetailsIndex}}">No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Is the horse on a loan? *</label><br>
+                                                    <div class="checkbox">
+                                                        <input class="magic-checkbox" type="checkbox" name="isLoanYes"
+                                                        id="{{ 'horseOnLoanYes'  + horseDetailsIndex}}"
+                                                        formControlName="isLoanYes"
+                                                        (change)="horseDetailsControl.controls['isLoanNo'].setValue ( !horseDetailsControl.controls['isLoanYes'].value);
+                                                        isHorseOnLoan(horseDetailsControl.controls['isOwnHorseYes'].value, horseDetailsControl.controls['isLoanYes'].value, horseDetailsIndex);"
+                                                        [checked]=" ( horseDetailsControl.controls['isLoanYes'].value ) ? 'check' : null">
+                                                        <label for="{{ 'horseOnLoanYes'  + horseDetailsIndex}}"></label>
+                                                        <label class="text" for="{{ 'horseOnLoanYes'  + horseDetailsIndex}}">Yes</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <input class="magic-checkbox" type="checkbox" name="isLoanYes"
+                                                        id="{{ 'horseOnLoanNo'  + horseDetailsIndex}}"
+                                                        formControlName="isLoanNo"
+                                                        (change)="horseDetailsControl.controls['isLoanYes'].setValue(!horseDetailsControl.controls['isLoanNo'].value);
+                                                        isHorseOnLoan(horseDetailsControl.controls['isOwnHorseYes'].value, horseDetailsControl.controls['isLoanYes'].value, horseDetailsIndex);"
+                                                        [checked]=" ( horseDetailsControl.controls['isLoanNo'].value ) ? 'check' : null">
+                                                        <label for="{{ 'horseOnLoanNo'  + horseDetailsIndex}}"></label>
+                                                        <label class="text" for="{{ 'horseOnLoanNo'  + horseDetailsIndex}}">No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" *ngIf="horseDetailsControl.controls['isLoanYes'].value">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Who the loss payee is? *</label><br>
+                                                    <div class="checkbox">
+                                                        <input class="magic-checkbox" type="checkbox" name="isLoanYes"
+                                                        id="{{ 'lossPayeeHolder'  + horseDetailsIndex}}"
+                                                        formControlName="isLossPayeeHolder"
+                                                        (change)="horseDetailsControl.controls['isLossPayeeOwner'].setValue(!horseDetailsControl.controls['isLossPayeeHolder'].value);"
+                                                        [checked]="horseDetailsControl.controls['isLossPayeeHolder'].value ? 'check' : null">
+                                                        <label for="{{ 'lossPayeeHolder'  + horseDetailsIndex}}"></label>
+                                                        <label class="text" for="{{ 'lossPayeeHolder'  + horseDetailsIndex}}">Policy Holder</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <input class="magic-checkbox" type="checkbox" name="isLoanYes"
+                                                        id="{{ 'lossPayeeOwner'  + horseDetailsIndex}}"
+                                                        formControlName="isLossPayeeOwner"
+                                                        (change)="horseDetailsControl.controls['isLossPayeeHolder'].setValue(!horseDetailsControl.controls['isLossPayeeOwner'].value);"
+                                                        [checked]="horseDetailsControl.controls['isLossPayeeOwner'].value ? 'check' : null">
+                                                        <label for="{{ 'lossPayeeOwner'  + horseDetailsIndex}}"></label>
+                                                        <label class="text" for="{{ 'lossPayeeOwner'  + horseDetailsIndex}}">Owner</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Is there a loan agreement in place?</label><br>
+                                                    <div class="checkbox">
+                                                        <input class="magic-checkbox" type="checkbox" name="isLoanYes"
+                                                        id="{{ 'isHaveLoanAgrementNo'  + horseDetailsIndex}}"
+                                                        formControlName="isHaveLoanAgrementYes"
+                                                        (change)="horseDetailsControl.controls['isHaveLoanAgrementNo'].setValue(!horseDetailsControl.controls['isHaveLoanAgrementYes'].value);"
+                                                        [checked]="horseDetailsControl.controls['isHaveLoanAgrementYes'].value ? 'check' : null">
+                                                        <label for="{{ 'isHaveLoanAgrementNo'  + horseDetailsIndex}}"></label>
+                                                        <label class="text" for="{{ 'isHaveLoanAgrementNo'  + horseDetailsIndex}}">Yes</label>
+                                                    </div>
+                                                    <div class="checkbox">
+                                                        <input class="magic-checkbox" type="checkbox" name="isLoanYes"
+                                                        id="{{ 'isHaveLoanAgrementNo'  + horseDetailsIndex}}"
+                                                        formControlName="isHaveLoanAgrementNo"
+                                                        (change)="horseDetailsControl.controls['isHaveLoanAgrementYes'].setValue(!horseDetailsControl.controls['isHaveLoanAgrementNo'].value);"
+                                                        [checked]="horseDetailsControl.controls['isHaveLoanAgrementNo'].value ? 'check' : null">
+                                                        <label for="{{ 'isHaveLoanAgrementNo'  + horseDetailsIndex}}"></label>
+                                                        <label class="text" for="{{ 'isHaveLoanAgrementNo'  + horseDetailsIndex}}">No</label>
+                                                    </div>
+                                                    <div *ngIf="horseDetailsControl.controls['isHaveLoanAgrementYes'].value" class="upload-btn-wrapper upload-agreement">
+                                                        <button class="btn btn btn-hollow-grey">Select Loan Agreement</button>
+                                                        <input type="file" name="myfile"
+                                                        (change)="onFileSelectEvent($event, horseDetailsIndex)"/>
+                                                        <span class="upload-filename">{{ horseDetailsControl['controls'].loanAgreementName.value }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="col-sm-4">
+                                                <div class="form-group">
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                        <div *ngIf="horseDetailsControl.controls['isSameAdresYes'].value">
+                                            <div class="row">
+                                                <div class="col-sm-4">
+                                                    <div class="form-group dropdown-main">
+                                                        <label class="control-label">Stable Postcode *</label>
+                                                        <input type="text" name="" class="form-control" formControlName="postCode"
+                                                        (keyup)="checkAddressFromPostCode(horseDetailsIndex)"
+                                                        [ngClass]="{'has-error' : horseDetailsControl.controls['postCode'].touched && (!horseDetailsControl.controls['postCode'].valid ) }">
+                                                        
+
+                                                        <div *ngIf="postCodeSearchedAddress.length > 0" class="address-dropdown">
+                                                            <ul class="list-unstyled" *ngIf="postCodeSearchedAddress.length > 0">
+                                                                <li *ngFor = "let address of postCodeSearchedAddress; let currentIndex = index " 
+                                                                (click)="setPostCodeSearchedAddress(horseDetailsIndex, currentIndex)">
+                                                                <i class="fa fa-map-marker fa-2x"></i>
+                                                                    {{ createAndGetAddress(currentIndex) }}
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+
+                                                        <!-- <div *ngIf="postCodeSearchedAddress" (click)="setPostCodeSearchedAddress(horseDetailsIndex)" class="address-dropdown"><i class="fa fa-map-marker fa-2x"></i> {{ postCodeSearchedAddress.building_number + ", "
+                                                        + postCodeSearchedAddress.line_2 + ", " + postCodeSearchedAddress.line_3  + ", " + postCodeSearchedAddress.country}}</div> -->
+                                                    
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Flat Number</label>
+                                                        <input type="text" name="" class="form-control" formControlName="flatNo">
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-4">
+                                                    <div class="form-group">
+                                                        <label class="control-label">House Name or Number</label>
+                                                        <input type="text" name="" class="form-control" formControlName="houseName">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Address Line 1 *</label>
+                                                        <input type="text" name="" class="form-control" formControlName="addressLine1"
+                                                        [ngClass]="{'has-error' : horseDetailsControl.controls['addressLine1'].touched && (!horseDetailsControl.controls['addressLine1'].valid ) }">
+                                                    </div>
+                                                    <label class="has-error" *ngIf="horseDetailsControl.controls['addressLine1'].hasError('required') &&
+                                                        horseDetailsControl.controls['addressLine1'].touched">
+                                                        Address is required!
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Address Line 2</label>
+                                                        <input type="text" name="" class="form-control" formControlName="addressLine2"
+                                                        [ngClass]="{'has-error' : horseDetailsControl.controls['addressLine2'].touched && (!horseDetailsControl.controls['addressLine2'].valid ) }">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Town *</label>
+                                                        <input type="text" name="" class="form-control" formControlName="town"
+                                                        [ngClass]="{'has-error' : horseDetailsControl.controls['town'].touched && (!horseDetailsControl.controls['town'].valid ) }">
+                                                    </div>
+                                                    <label class="has-error" *ngIf="horseDetailsControl.controls['town'].hasError('required') &&
+                                                        horseDetailsControl.controls['town'].touched">
+                                                        Town is required!
+                                                    </label>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Country *</label>
+                                                        <input type="text" name="" class="form-control" formControlName="country"
+                                                        [ngClass]="{'has-error' : horseDetailsControl.controls['country'].touched && (!horseDetailsControl.controls['country'].valid ) }">
+                                                    </div>
+                                                    <label class="has-error" *ngIf="horseDetailsControl.controls['country'].hasError('required') &&
+                                                        horseDetailsControl.controls['country'].touched">
+                                                        Country is required!
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Purchase/Loan date *</label>
+                                                    <input type="text" name="" class="form-control" formControlName="purchaseLoanDate"
+                                                    #loanDate="bsDatepicker"
+                                                    bsDatepicker
+                                                    (bsValue)="MAX_DATE" [maxDate]="MAX_DATE"
+                                                    [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+                                                    [ngClass]="{'has-error' : horseDetailsControl.controls['purchaseLoanDate'].touched && (!horseDetailsControl.controls['purchaseLoanDate'].valid ) }">
+                                                </div>
+                                                <label class="has-error" *ngIf="horseDetailsControl.controls['purchaseLoanDate'].hasError('required') &&
+                                                    horseDetailsControl.controls['purchaseLoanDate'].touched">
+                                                    The purchase loan date field is required.
+                                                </label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label class="control-label">Quote/ Policy inception date *</label>
+                                                    <input type="text" name="" class="form-control" formControlName="quoteDate" bsDatepicker
+                                                    #quoteDate="bsDatepicker"
+                                                    [minDate]="QUOTE_INCEPTION_DATE_MIN_DATE"
+                                                    [maxDate]="QUOTE_INCEPTION_DATE_MAX_DATE"
+                                                    (bsValue)="QUOTE_INCEPTION_DATE_MIN_DATE"
+                                                    [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+                                                    [ngClass]="{'has-error' : horseDetailsControl.controls['quoteDate'].touched && (!horseDetailsControl.controls['quoteDate'].valid ) }">
+                                                </div>
+                                                <label class="has-error" *ngIf="horseDetailsControl.controls['quoteDate'].hasError('required') &&
+                                                    horseDetailsControl.controls['quoteDate'].touched">
+                                                    The quote commencement date field is required.
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Buttons -->
+                        <div class="text-right btm-btn">
+                            <button class="btn btn-grey" (click)="goToPolicyHolderForm()">Previous</button>
+                            <button class="btn btn-green" (click)="goToStatementtOfFactForm()" [disabled]="!horseDetailsForm.valid">Proceed</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>

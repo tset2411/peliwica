@@ -1,0 +1,382 @@
+<section class="obtain-quote-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="text-center"><span>Step 4</span>Statement of fact</h2>
+            </div>
+        </div>
+        <div class="row">
+            <form [formGroup]="statementOfFactForm" novalidate>
+                <div class="col-sm-12">
+                    <div formArrayName="statementOfFactArray" *ngFor="let statementOfFactControl of statementOfFactForm['controls'].statementOfFactArray['controls']; let statementOfFactIndex=index ">
+                        
+                        <!-- accordian heading -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="panel-heading" role="tab" id="{{ 'heading'  + statementOfFactIndex}}">
+                                    <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" id="collapse101"
+                                        href="#collapseOne{{statementOfFactIndex}}" aria-expanded="true" attr.aria-controls="collapseOne{{statementOfFactIndex}}">
+                                        Horse
+                                        {{ formDataService.formData.horseDetailsFormData ? formDataService.formData.horseDetailsFormData?.horseDetailsArray[statementOfFactIndex].name :  statementOfFactIndex }} Facts<i class="fa fa-plus" aria-hidden="true"></i> <i class="fa fa-minus"></i>
+                                    </a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- accordian body -->
+                        <div id="{{ 'collapseOne'  + statementOfFactIndex}}" class="panel-collapse collapse in" role="tabpanel"
+                            attr.aria-controls="heading{{statementOfFactIndex}}" [formGroupName]="statementOfFactIndex">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label class="control-label">1. Has {{ formDataService.formData.horseDetailsFormData ? formDataService.formData.horseDetailsFormData?.horseDetailsArray[statementOfFactIndex].name : '' }} ever suffered from colic or any other gastro intestinal disorder?</label>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <div class="checkbox">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                                            id="{{'ques1Yes' + statementOfFactIndex}}"
+                                                            formControlName="isColicYes"
+                                                            (change)="statementOfFactControl.controls['isColicNo'].setValue(!statementOfFactControl.controls['isColicYes'].value);"
+                                                            [checked]="statementOfFactControl.controls['isColicYes'].value ? 'check' : null">
+                                                            <label for="{{'ques1Yes' + statementOfFactIndex}}"></label>
+                                                            <label class="text" for="{{'ques1Yes' + statementOfFactIndex}}">Yes</label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                                            id="{{'ques1No' + statementOfFactIndex}}"
+                                                            formControlName="isColicNo"
+                                                            (change)="statementOfFactControl.controls['isColicYes'].setValue(!statementOfFactControl.controls['isColicNo'].value);"
+                                                            [checked]="statementOfFactControl.controls['isColicNo'].value ? 'check' : null">
+                                                            <label for="{{'ques1No' + statementOfFactIndex}}"></label>
+                                                            <label class="text" for="{{'ques1No' + statementOfFactIndex}}">No</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-5 col-lg-4" *ngIf="statementOfFactControl.controls['isColicYes'].value">
+                                                        <input type="text" placeholder="If yes what/when?" name="" class="form-control" formControlName="colicDescription">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">2. Has {{ formDataService.formData.horseDetailsFormData ? formDataService.formData.horseDetailsFormData?.horseDetailsArray[statementOfFactIndex].name : '' }} ever indergone any from of surgery (including castration) in the last 12 months?</label>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <div class="checkbox">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                                            id="{{'ques2Yes' + statementOfFactIndex}}"
+                                                            formControlName="isIndergoneSurgeryYes"
+                                                            (change)="statementOfFactControl.controls['isIndergoneSurgeryNo'].setValue(!statementOfFactControl.controls['isIndergoneSurgeryYes'].value);"
+                                                            [checked]="statementOfFactControl.controls['isIndergoneSurgeryYes'].value ? 'check' : null">
+                                                            <label for="{{'ques2Yes' + statementOfFactIndex}}"></label>
+                                                            <label class="text" for="{{'ques2Yes' + statementOfFactIndex}}">Yes</label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                                            id="{{'ques2No' + statementOfFactIndex}}"
+                                                            formControlName="isIndergoneSurgeryNo"
+                                                            (change)="statementOfFactControl.controls['isIndergoneSurgeryYes'].setValue(!statementOfFactControl.controls['isIndergoneSurgeryNo'].value);"
+                                                            [checked]="statementOfFactControl.controls['isIndergoneSurgeryNo'].value ? 'check' : null">
+                                                            <label for="{{'ques2No' + statementOfFactIndex}}"></label>
+                                                            <label class="text" for="{{'ques2No' + statementOfFactIndex}}">No</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-5 col-lg-4" *ngIf="statementOfFactControl.controls['isIndergoneSurgeryYes'].value">
+                                                        <input type="text" placeholder="If yes what/when?" name="" class="form-control"
+                                                        formControlName="indergoneSurgeryDescription">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">3. Has {{ formDataService.formData.horseDetailsFormData ? formDataService.formData.horseDetailsFormData?.horseDetailsArray[statementOfFactIndex].name : '' }} ever suffered from any lameness, fractures, tendon or ligament injury?</label>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <div class="checkbox">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                                            id="{{'ques3Yes' + statementOfFactIndex}}"
+                                                            formControlName="isLamenessFracturesYes"
+                                                            (change)="statementOfFactControl.controls['isLamenessFracturesNo'].setValue(!statementOfFactControl.controls['isLamenessFracturesYes'].value);"
+                                                            [checked]="statementOfFactControl.controls['isLamenessFracturesYes'].value ? 'check' : null">
+                                                            <label for="{{'ques3Yes' + statementOfFactIndex}}"></label>
+                                                            <label class="text" for="{{'ques3Yes' + statementOfFactIndex}}">Yes</label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                                            id="{{'ques3No' + statementOfFactIndex}}"
+                                                            formControlName="isLamenessFracturesNo"
+                                                            (change)="statementOfFactControl.controls['isLamenessFracturesYes'].setValue(!statementOfFactControl.controls['isLamenessFracturesNo'].value);"
+                                                            [checked]="statementOfFactControl.controls['isLamenessFracturesNo'].value ? 'check' : null">
+                                                            <label for="{{'ques3No' + statementOfFactIndex}}"></label>
+                                                            <label class="text" for="{{'ques3No' + statementOfFactIndex}}">No</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-5 col-lg-4" *ngIf="statementOfFactControl.controls['isLamenessFracturesYes'].value">
+                                                        <input type="text" placeholder="If yes what/when?" name="" class="form-control"
+                                                        formControlName="lamenessFracturesDescription">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">4. Has {{ formDataService.formData.horseDetailsFormData ? formDataService.formData.horseDetailsFormData?.horseDetailsArray[statementOfFactIndex].name : '' }} ever suffered from sacroids, warts, melanomas or any other growth?</label>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <div class="checkbox">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                                            id="{{'ques4Yes' + statementOfFactIndex}}"
+                                                            formControlName="isSacroitsWartsYes"
+                                                            (change)="statementOfFactControl.controls['isSacroitsWartsNo'].setValue(!statementOfFactControl.controls['isSacroitsWartsYes'].value);"
+                                                            [checked]="statementOfFactControl.controls['isSacroitsWartsYes'].value ? 'check' : null">
+                                                            <label for="{{'ques4Yes' + statementOfFactIndex}}"></label>
+                                                            <label class="text" for="{{'ques4Yes' + statementOfFactIndex}}">Yes</label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                                            id="{{'ques4No' + statementOfFactIndex}}"
+                                                            formControlName="isSacroitsWartsNo"
+                                                            (change)="statementOfFactControl.controls['isSacroitsWartsYes'].setValue(!statementOfFactControl.controls['isSacroitsWartsNo'].value);"
+                                                            [checked]="statementOfFactControl.controls['isSacroitsWartsNo'].value ? 'check' : null">
+                                                            <label for="{{'ques4No' + statementOfFactIndex}}"></label>
+                                                            <label class="text" for="{{'ques4No' + statementOfFactIndex}}">No</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-5 col-lg-4" *ngIf="statementOfFactControl.controls['isSacroitsWartsYes'].value">
+                                                        <input type="text" placeholder="If yes what/when?" name="" class="form-control"
+                                                        formControlName="sacroitsWartsDescription">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">5. Has {{ formDataService.formData.horseDetailsFormData ? formDataService.formData.horseDetailsFormData?.horseDetailsArray[statementOfFactIndex].name : '' }} ever suffered from any other accident/illness or disease other than stated in 1,2,3,4? </label>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <div class="checkbox">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                                            id="{{'ques5Yes' + statementOfFactIndex}}"
+                                                            formControlName="isAccidentDiseaseYes"
+                                                            (change)="statementOfFactControl.controls['isAccidentDiseaseNo'].setValue(!statementOfFactControl.controls['isAccidentDiseaseYes'].value);"
+                                                            [checked]="statementOfFactControl.controls['isAccidentDiseaseYes'].value ? 'check' : null">
+                                                            <label for="{{'ques5Yes' + statementOfFactIndex}}"></label>
+                                                            <label class="text" for="{{'ques5Yes' + statementOfFactIndex}}">Yes</label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                                            id="{{'ques5No' + statementOfFactIndex}}"
+                                                            formControlName="isAccidentDiseaseNo"
+                                                            (change)="statementOfFactControl.controls['isAccidentDiseaseYes'].setValue(!statementOfFactControl.controls['isAccidentDiseaseNo'].value);"
+                                                            [checked]="statementOfFactControl.controls['isAccidentDiseaseNo'].value ? 'check' : null">
+                                                            <label for="{{'ques5No' + statementOfFactIndex}}"></label>
+                                                            <label class="text" for="{{'ques5No' + statementOfFactIndex}}">No</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-5 col-lg-4" *ngIf="statementOfFactControl.controls['isAccidentDiseaseYes'].value">
+                                                        <input type="text" placeholder="If yes what/when?" name="" class="form-control"
+                                                        formControlName="accidentDiseaseDescription">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">6. Has there ever been evidence of any contagious or infectious disease at the location where {{ formDataService.formData.horseDetailsFormData ? formDataService.formData.horseDetailsFormData?.horseDetailsArray[statementOfFactIndex].name : '' }} is kept?</label>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <div class="checkbox">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                                            id="{{'ques6Yes' + statementOfFactIndex}}"
+                                                            formControlName="isInfectiousDiseaseYes"
+                                                            (change)="statementOfFactControl.controls['isInfectiousDiseaseNo'].setValue(!statementOfFactControl.controls['isInfectiousDiseaseYes'].value);"
+                                                            [checked]="statementOfFactControl.controls['isInfectiousDiseaseYes'].value ? 'check' : null">
+                                                            <label for="{{'ques6Yes' + statementOfFactIndex}}"></label>
+                                                            <label class="text" for="{{'ques6Yes' + statementOfFactIndex}}">Yes</label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                                            id="{{'ques6No' + statementOfFactIndex}}"
+                                                            formControlName="isInfectiousDiseaseNo"
+                                                            (change)="statementOfFactControl.controls['isInfectiousDiseaseYes'].setValue(!statementOfFactControl.controls['isInfectiousDiseaseNo'].value);"
+                                                            [checked]="statementOfFactControl.controls['isInfectiousDiseaseNo'].value ? 'check' : null">
+                                                            <label for="{{'ques6No' + statementOfFactIndex}}"></label>
+                                                            <label class="text" for="{{'ques6No' + statementOfFactIndex}}">No</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-5 col-lg-4" *ngIf="statementOfFactControl.controls['isInfectiousDiseaseYes'].value">
+                                                        <input type="text" placeholder="If yes what/when?" name="" class="form-control"
+                                                        formControlName="infectiousDiseaseDescription">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">7. To the best of your knowledge is {{ formDataService.formData.horseDetailsFormData ? formDataService.formData.horseDetailsFormData?.horseDetailsArray[statementOfFactIndex].name : '' }} at present normal in conformation, eyes, heart, wind and action?</label>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <div class="checkbox">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                                            id="{{'ques7Yes' + statementOfFactIndex}}"
+                                                            formControlName="isEyesHeartWindYes"
+                                                            (change)="statementOfFactControl.controls['isEyesHeartWindNo'].setValue(!statementOfFactControl.controls['isEyesHeartWindYes'].value);"
+                                                            [checked]="statementOfFactControl.controls['isEyesHeartWindYes'].value ? 'check' : null">
+                                                            <label for="{{'ques7Yes' + statementOfFactIndex}}"></label>
+                                                            <label class="text" for="{{'ques7Yes' + statementOfFactIndex}}">Yes</label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                                            id="{{'ques7No' + statementOfFactIndex}}"
+                                                            formControlName="isEyesHeartWindNo"
+                                                            (change)="statementOfFactControl.controls['isEyesHeartWindYes'].setValue(!statementOfFactControl.controls['isEyesHeartWindNo'].value);"
+                                                            [checked]="statementOfFactControl.controls['isEyesHeartWindNo'].value ? 'check' : null">
+                                                            <label for="{{'ques7No' + statementOfFactIndex}}"></label>
+                                                            <label class="text" for="{{'ques7No' + statementOfFactIndex}}">No</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-5 col-lg-4" *ngIf="statementOfFactControl.controls['isEyesHeartWindYes'].value">
+                                                        <input type="text" placeholder="If yes what/when?" name="" class="form-control"
+                                                        formControlName="eyesHeartWindDescription">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">8. Is {{ formDataService.formData.horseDetailsFormData ? formDataService.formData.horseDetailsFormData?.horseDetailsArray[statementOfFactIndex].name : '' }} currently insured?</label>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <div class="checkbox">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                                            id="{{'ques8Yes' + statementOfFactIndex}}"
+                                                            formControlName="isCurrentlyInsuredYes"
+                                                            (change)="statementOfFactControl.controls['isCurrentlyInsuredNo'].setValue(!statementOfFactControl.controls['isCurrentlyInsuredYes'].value);"
+                                                            [checked]="statementOfFactControl.controls['isCurrentlyInsuredYes'].value ? 'check' : null">
+                                                            <label for="{{'ques8Yes' + statementOfFactIndex}}"></label>
+                                                            <label class="text" for="{{'ques8Yes' + statementOfFactIndex}}">Yes</label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                                            id="{{'ques8No' + statementOfFactIndex}}"
+                                                            formControlName="isCurrentlyInsuredNo"
+                                                            (change)="statementOfFactControl.controls['isCurrentlyInsuredYes'].setValue(!statementOfFactControl.controls['isCurrentlyInsuredNo'].value);"
+                                                            [checked]="statementOfFactControl.controls['isCurrentlyInsuredNo'].value ? 'check' : null">
+                                                            <label for="{{'ques8No' + statementOfFactIndex}}"></label>
+                                                            <label class="text" for="{{'ques8No' + statementOfFactIndex}}">No</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-5 col-lg-4" *ngIf="statementOfFactControl.controls['isCurrentlyInsuredYes'].value">
+                                                        <input type="text" placeholder="If yes what/when?" name="" class="form-control"
+                                                        formControlName="currentlyInsuredDescription">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">9. Have you ever been declined Equine insurance?</label>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <div class="checkbox">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                                            id="{{'ques9Yes' + statementOfFactIndex}}"
+                                                            formControlName="isEquineInsuranceYes"
+                                                            (change)="statementOfFactControl.controls['isEquineInsuranceNo'].setValue(!statementOfFactControl.controls['isEquineInsuranceYes'].value);"
+                                                            [checked]="statementOfFactControl.controls['isEquineInsuranceYes'].value ? 'check' : null">
+                                                            <label for="{{'ques9Yes' + statementOfFactIndex}}"></label>
+                                                            <label class="text" for="{{'ques9Yes' + statementOfFactIndex}}">Yes</label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                                            id="{{'ques9No' + statementOfFactIndex}}"
+                                                            formControlName="isEquineInsuranceNo"
+                                                            (change)="statementOfFactControl.controls['isEquineInsuranceYes'].setValue(!statementOfFactControl.controls['isEquineInsuranceNo'].value);"
+                                                            [checked]="statementOfFactControl.controls['isEquineInsuranceNo'].value ? 'check' : null">
+                                                            <label for="{{'ques9No' + statementOfFactIndex}}"></label>
+                                                            <label class="text" for="{{'ques9No' + statementOfFactIndex}}">No</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-5 col-lg-4" *ngIf="statementOfFactControl.controls['isEquineInsuranceYes'].value">
+                                                        <input type="text" placeholder="If yes what/when?" name="" class="form-control"
+                                                        formControlName="equineInsuranceDescription">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">10. Have you ever incurred any equine,"Saddlery and Tack or Trailer loss whether insured or not ?" </label>
+                                                <div class="row">
+                                                    <div class="col-sm-4">
+                                                        <div class="checkbox">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                                            id="{{'ques10Yes' + statementOfFactIndex}}"
+                                                            formControlName="isEquineLossYes"
+                                                            (change)="statementOfFactControl.controls['isEquineLossNo'].setValue(!statementOfFactControl.controls['isEquineLossYes'].value);"
+                                                            [checked]="statementOfFactControl.controls['isEquineLossYes'].value ? 'check' : null">
+                                                            <label for="{{'ques10Yes' + statementOfFactIndex}}"></label>
+                                                            <label class="text" for="{{'ques10Yes' + statementOfFactIndex}}">Yes</label>
+                                                        </div>
+                                                        <div class="checkbox">
+                                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                                            id="{{'ques10No' + statementOfFactIndex}}"
+                                                            formControlName="isEquineLossNo"
+                                                            (change)="statementOfFactControl.controls['isEquineLossYes'].setValue(!statementOfFactControl.controls['isEquineLossNo'].value);"
+                                                            [checked]="statementOfFactControl.controls['isEquineLossNo'].value ? 'check' : null">
+                                                            <label for="{{'ques10No' + statementOfFactIndex}}"></label>
+                                                            <label class="text" for="{{'ques10No' + statementOfFactIndex}}">No</label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-6 col-md-5 col-lg-4" *ngIf="statementOfFactControl.controls['isEquineLossYes'].value">
+                                                        <input type="text" placeholder="If yes what/when?" name="" class="form-control"
+                                                        formControlName="equineLossDescription">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default document-for-horsename">
+                                <div class="panel-body">
+                                    <h3>Documents for {{ formDataService.formData.horseDetailsFormData ? formDataService.formData.horseDetailsFormData?.horseDetailsArray[statementOfFactIndex].name : '' }}</h3>
+                                    <p>Please request and upload any previous medical history or any previous veterinary certificates documents for {{ formDataService.formData.horseDetailsFormData ? formDataService.formData.horseDetailsFormData?.horseDetailsArray[statementOfFactIndex].name : '' }}.</p>
+                                    <p>If Peliwica require additional Veterinary Certificates/Documents, we will advise you and apply an endorsement to the schedule.</p>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6" formArrayName="documentsArray" *ngFor="let documentsControl of statementOfFactControl['controls'].documentsArray['controls']; let documenentsIndex=index; let documenentsFirstIndex=first; ">
+                                            <div class="well" [formGroupName]="documenentsIndex">
+                                                <h3>Documents #{{ documenentsIndex + 1 }}<button *ngIf="!documenentsFirstIndex" class="btn pull-right btn-sm btn-danger"(click)="removeDocumentsToDocumentsArray(statementOfFactIndex, documenentsIndex)"><i class="fa fa-times"></i></button>
+                                                </h3>
+                                                <div class="form-group row">
+                                                    <label class="control-label col-sm-4 col-md-5">Select file to Upload</label>
+                                                    <div class="col-sm-8 col-md-7">
+                                                        <div class="upload-btn-wrapper">
+                                                            <button class="btn btn-grey">Browse</button>
+                                                            <input type="file" name="myfile" 
+                                                            (change)="onFileSelectEvent($event, statementOfFactIndex, documenentsIndex)"/>
+                                                        </div> 
+                                                        <span class="upload-filename">{{ documentsControl['controls'].documentsName.value }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="control-label col-sm-4 col-md-5">File Description</label>
+                                                    <div class="col-sm-8 col-md-7">
+                                                        <input type="text" name="" class="form-control" 
+                                                        formControlName="documentsDescription">
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-12 text-right">
+                                                        <button class="btn btn-green">Confirm Upload</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <button class="btn btn-hollow-grey"
+                                        (click)="addDocumentsToDocumentsArray(statementOfFactIndex)">Add on Additional Document</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- buttons -->
+                    <div class="text-right btm-btn">
+                        <button class="btn btn-grey" (click)="goToHorseDetailsForm()">Previous</button>
+                        <button class="btn btn-green" (click)="goToVerifyForm()" 
+                        [disabled]="!statementOfFactForm.valid">Proceed</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

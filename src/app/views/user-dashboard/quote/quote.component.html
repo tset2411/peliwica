@@ -1,0 +1,621 @@
+<section class="obtain-quote-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="text-center"><span>Step 1</span>Obtain Quote</h2>
+            </div>
+        </div>
+        <div class="row">
+            <form [formGroup]="quoteForms" novalidate  id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="col-sm-12">
+                    
+                    <!-- Need to set common for all horses -->
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Processing Brokerage :</label>
+                                        <h6>Broker A</h6>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Level Of Gross Commission :</label>
+                                        <h6>20%</h6>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Kind of Business Transaction :</label><br class="visible-xs">
+                                        <div class="checkbox">
+                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                            id="new_business_checkbox_step1"
+                                            [formControl]="quoteForms.controls['isNewBusinessTransaction']"
+                                            (change)="quoteForms.controls['isRenewalBusinessTransaction'].setValue(!quoteForms.controls['isNewBusinessTransaction'].value);
+                                            onNewBusinessChange(quoteForms.controls['isNewBusinessTransaction'].value);"
+                                            [checked]="quoteForms.controls['isNewBusinessTransaction'].value ? 'check' : null">
+                                            <label for="new_business_checkbox_step1"></label>
+                                            <label class="text" for="new_business_checkbox_step1">New Business</label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <input class="magic-checkbox" type="checkbox" name="layout"
+                                            id="renewal_business_checkbox_step_1"
+                                            [formControl]="quoteForms.controls['isRenewalBusinessTransaction']"
+                                            (change)="quoteForms.controls['isNewBusinessTransaction'].setValue(!quoteForms.controls['isRenewalBusinessTransaction'].value);
+                                            onRenewBusinessChange(quoteForms.controls['isNewBusinessTransaction'].value);"
+                                            [checked]="quoteForms.controls['isRenewalBusinessTransaction'].value ? 'check' : null">
+                                            <label for="renewal_business_checkbox_step_1"></label>
+                                            <label class="text" for="renewal_business_checkbox_step_1">Renewal</label>
+                                        </div>
+                                        <!-- <div class="checkbox">
+                                            <input class="magic-checkbox" type="radio" name="layout"
+                                            id="new_business_checkbox_step1" [value]="true"
+                                            [formControl]="quoteForms.controls['isNewBusinessTransaction']">
+                                            <label for="new_business_checkbox_step1"></label>
+                                            <label class="text" for="new_business_checkbox_step1">New Business</label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <input class="magic-checkbox" type="radio" name="layout"
+                                            id="renewal_business_checkbox_step_1" [value]="false"
+                                            [formControl]="quoteForms.controls['isNewBusinessTransaction']">
+                                            <label for="renewal_business_checkbox_step_1"></label>
+                                            <label class="text" for="renewal_business_checkbox_step_1">Renewal</label>
+                                            {{quoteForms.controls['isNewBusinessTransaction'].value}}
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Need to set Policyholder Details common for all horses -->
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h3>Policyholder Details</h3>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label
+                                        class="control-label">First Name *</label>
+                                        <input
+                                        [formControl]="quoteForms.controls['policyHolderFirstName']"
+                                        type="text" name="" class="form-control"
+                                        pattern="[a-z\sA-Z\s0-9\s@*?]+" required
+                                        [ngClass]="{'has-error' : quoteForms.controls['policyHolderFirstName'].touched && (!quoteForms.controls['policyHolderFirstName'].valid ) }">
+                                        <label class="has-error" *ngIf="!quoteForms.controls['policyHolderFirstName'].valid && quoteForms.controls['policyHolderFirstName'].hasError('maxlength')">
+                                            First Name is too-long!
+                                        </label>
+                                        <label class="has-error" *ngIf="!quoteForms.controls['policyHolderFirstName'].valid && quoteForms.controls['policyHolderFirstName'].hasError('pattern')">
+                                            First Name is Not Valid!
+                                        </label>
+                                        <label class="has-error" *ngIf="!quoteForms.controls['policyHolderFirstName'].valid && quoteForms.controls['policyHolderFirstName'].touched
+                                            && quoteForms.controls['policyHolderFirstName'].hasError('required')">
+                                            First Name is Required!
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Middle Name</label>
+                                        <input
+                                        [formControl]="quoteForms.controls['policyHolderMiddleName']"
+                                        type="text" name="" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Last Name *</label>
+                                        <input
+                                        [formControl]="quoteForms.controls['policyHolderLastName']"
+                                        type="text" name="" class="form-control"
+                                        pattern="[a-z\sA-Z\s0-9\s@*?]+"
+                                        [ngClass]="{'has-error' : quoteForms.controls['policyHolderLastName'].touched && (!quoteForms.controls['policyHolderLastName'].valid ) }"
+                                        required>
+                                        <label class="has-error" *ngIf="!quoteForms.controls['policyHolderLastName'].valid && quoteForms.controls['policyHolderLastName'].hasError('maxlength')">
+                                            Last Name is too-long!
+                                        </label>
+                                        <label class="has-error" *ngIf="!quoteForms.controls['policyHolderLastName'].valid && quoteForms.controls['policyHolderLastName'].hasError('pattern')">
+                                            Last Name is Not Valid!
+                                        </label>
+                                        <label class="has-error" *ngIf="!quoteForms.controls['policyHolderLastName'].valid && quoteForms.controls['policyHolderLastName'].touched
+                                            && quoteForms.controls['policyHolderLastName'].hasError('required')">
+                                            Last Name is Required!
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-7 col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Does the proposer have any criminal convictions? *</label><br>
+                                        <div class="radio">
+                                            <input
+                                            [formControl]="quoteForms.controls['isAnyCriminalConvictions']"
+                                            class="magic-radio" type="radio" name="radio" id="12" value="true"
+                                            (change)="isAnyCriminalConvictionsChange(quoteForms.controls['isAnyCriminalConvictions'].value)">
+                                            <label for="12">Yes</label>
+                                        </div>
+                                        <div class="radio">
+                                            <input
+                                            [formControl]="quoteForms.controls['isAnyCriminalConvictions']"
+                                            class="magic-radio" type="radio" name="radio" id="13" value="false"
+                                            (change)="isAnyCriminalConvictionsChange(quoteForms.controls['isAnyCriminalConvictions'].value)">
+                                            <label for="13" class="text">No</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5 col-md-6"
+                                    *ngIf="quoteForms.controls['isAnyCriminalConvictions'].value == 'true'">
+                                    <div class="form-group">
+                                        <label class="control-label">If yes what? *</label>
+                                        <input
+                                        [formControl]="quoteForms.controls['criminalConvictions']"
+                                        type="text" name="" class="form-control"
+                                        [ngClass]="{'has-error' : quoteForms.controls['criminalConvictions'].touched && (!quoteForms.controls['criminalConvictions'].valid ) }"
+                                        required>
+                                        <label class="has-error" *ngIf="!quoteForms.controls['criminalConvictions'].valid && quoteForms.controls['criminalConvictions'].touched
+                                            && quoteForms.controls['criminalConvictions'].hasError('required')">
+                                            Criminal convictions is Required!
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Saddley and Trailers Details -->
+                    <!-- Need to set common for all horses -->
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <h3>Saddlery & Tack/Horse Trailer cover</h3>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <input
+                                            [formControl]="quoteForms.controls['saddleryOrTrack']"
+                                            class="magic-checkbox" type="checkbox" name="layout"
+                                            id="saddlery_track_checkbox" value="option" (change)="refreshSelectPicker()">
+                                            <label for="saddlery_track_checkbox"></label>
+                                            <label class="text" for="saddlery_track_checkbox">Saddlery/Track
+                                                <a href="javascript:void(0)"
+                                                    title="{{ SADDLEY_AND_TRACK_TOOLTIP }}"><i class="fa fa-question-circle fa-lg">
+                                                </i></a>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="quoteForms.controls['saddleryOrTrack'].value">
+                                            <label class="control-label">Value of items (£)</label>
+                                            <input [formControl]="quoteForms.controls['addOnValueOfItems']" type="text" name="" class="form-control"
+                                            (keypress)="checkNumberFormat($event)">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <input
+                                            [formControl]="quoteForms.controls['isTrailersOrHorseDrawnVehicles']"
+                                            class="magic-checkbox" type="checkbox" name="layout"
+                                            id="trailers_horse_checkbox" value="option" (change)="refreshSelectPicker()">
+                                            <label for="trailers_horse_checkbox"></label>
+                                            <label class="text" for="trailers_horse_checkbox">Horse Trailers
+                                                <a href="javascript:void(0)"
+                                                    title="{{ TRAILERS_TOOLTIP }}"><i class="fa fa-question-circle fa-lg">
+                                                </i></a>
+                                            </label>
+                                        </div>
+                                        <div *ngIf="quoteForms.controls['isTrailersOrHorseDrawnVehicles'].value">
+                                            <label class="control-label">Value of items (£)</label>
+                                            <input [formControl]="quoteForms.controls['valueOfItems']" type="text" name="" class="form-control"
+                                            (keypress)="checkNumberFormat($event)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Accordion for multiple horses -->
+                    <div formArrayName="horseQuotesArray" *ngFor="let horseQuoteControl of quoteForms['controls'].horseQuotesArray['controls']; let horseFormIndex = index; let firstIndex = first ">
+                        
+                        <!-- Accordian Header -->
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="panel-heading" role="tab" id="{{ 'heading'  + horseFormIndex}}">
+                                    <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" id="{{ 'collapse'  + horseFormIndex}}"
+                                        href="#collapseOne{{horseFormIndex}}" aria-expanded="true"
+                                        attr.aria-controls="collapseOne{{horseFormIndex}}">
+                                        Horse {{ horseFormIndex + 1 }}
+                                        <i class="pull-right text-danger fa fa-trash" *ngIf="!firstIndex"
+                                        (click)="removeAdditionalHorse(horseFormIndex)"></i>
+                                        <i class="fa fa-plus" aria-hidden="true"></i> <i class="fa fa-minus"></i>
+                                    </a>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Accordian Body -->
+                        <div id="{{ 'collapseOne'  + horseFormIndex}}" class="panel-collapse collapse in" role="tabpanel"
+                            attr.aria-controls="heading{{horseFormIndex}}">
+                            <div [formGroupName]="horseFormIndex" class="col-sm-12">
+                                <!-- Horse Details Section -->
+                                <div class="panel panel-default">
+                                    <div class="panel-body">
+                                        <h3>Horse Details</h3>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Date of Birth Horse *:</label>
+                                                    <input
+                                                    [formControl]="horseQuoteControl.controls['horseDateOfBirth']"
+                                                    type="text" name="" class="form-control datepicker"
+                                                    #dp="bsDatepicker" bsDatepicker
+                                                    (bsValue)="birthDateMaxDate"
+                                                    (bsValueChange)="onHorseDOBCahnge($event, horseFormIndex)"
+                                                    [maxDate]="birthDateMaxDate"
+                                                    [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+                                                    [ngClass]="{'has-error' : horseQuoteControl.controls['horseDateOfBirth'].touched && (!horseQuoteControl.controls['horseDateOfBirth'].valid ) }"
+                                                    >
+                                                    <label class="has-error" *ngIf="horseQuoteControl.controls['horseDateOfBirth'].touched && (!horseQuoteControl.controls['horseDateOfBirth'].valid && horseQuoteControl.controls['horseDateOfBirth'].hasError('required') )">
+                                                        Horse Date of Birth is Required!
+                                                    </label>
+                                                    <label class="has-error" *ngIf="horseQuoteControl.controls['horseDateOfBirth'].touched && (!horseQuoteControl.controls['horseDateOfBirth'].valid && !horseQuoteControl.controls['horseDateOfBirth'].hasError('required') )">
+                                                        Invalid Date of Birth!
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Age of Horse (yrs) *:</label>
+                                                    <input
+                                                    [formControl]="horseQuoteControl.controls['ageOfHorse']"
+                                                    type="text" name="" class="form-control" readonly>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Horse Value (£):</label>
+                                                    <input
+                                                    [formControl]="horseQuoteControl.controls['horseValue']"
+                                                    type="text" name="" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Main Horse Usage : <a href="javascript:void(0)"
+                                                    title="{{ MAIN_HORSE_USAGE_TOOLTIP }}"><i class="fa fa-question-circle fa-lg"></i></a></label>
+                                                    <select
+                                                        [formControl]="horseQuoteControl.controls['horseUsage']"
+                                                        class="selectpicker" [attr.data-size]="defaultDropDownSize"
+                                                        (change)="onMainHorseUsageChange(horseQuoteControl.controls['horseUsage'].value)">
+                                                        <option
+                                                            *ngFor="let horseUsage of sharedService.mainHorseUsageDropDown | order : ['+value']"
+                                                            [ngValue]="horseUsage">{{ horseUsage.value }}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4"
+                                                *ngIf="isBloodStockSelected">
+                                                <div class="form-group">
+                                                    <label class="control-label">Bloodstock Classification : <a href="javascript:void(0)"><i class="fa fa-question-circle fa-lg"></i></a></label>
+                                                    <select
+                                                        [formControl]="horseQuoteControl.controls['bloodStockClassification']"
+                                                        class="selectpicker" [attr.data-size]="defaultDropDownSize">
+                                                        <option
+                                                            *ngFor="let bloodstock of sharedService.bloodstockClassificationDropDown | order : ['+value']"
+                                                            [ngValue]="bloodstock">{{ bloodstock.value }}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Cover Selection Section -->
+                                <div class="panel panel-default cover-selection">
+                                    <div class="panel-body">
+                                        <h3>Cover Selection</h3>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <input
+                                                        [formControl]="horseQuoteControl.controls['isLossOfHorse']"
+                                                        class="magic-checkbox" type="checkbox" name="layout"
+                                                        id="{{ 'personal_iability'  + horseFormIndex}}" value="option"
+                                                        (change)="refreshSelectPicker()"
+                                                        required>
+                                                        <label for="{{ 'personal_iability'  + horseFormIndex}}"></label>
+                                                        <label class="text" for="{{ 'personal_iability'  + horseFormIndex}}">Loss of Horse *</label>
+                                                        <!-- <label class="has-error" *ngIf="!horseQuoteControl.controls['isLossOfHorse'].value">
+                                                            Loss of Horse is Required!
+                                                        </label> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4" *ngIf="horseQuoteControl.controls['ageOfHorse'].value < horseMinYearAgeLimit">
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <input
+                                                        [formControl]="horseQuoteControl.controls['isLossOfUse']"
+                                                        (change)="isLossOfUse(horseQuoteControl.controls['isLossOfUse'].value)"
+                                                        class="magic-checkbox" type="checkbox" name="layout"
+                                                        id="{{ 'loss_of_use'  + horseFormIndex}}" value="option">
+                                                        <label for="{{ 'loss_of_use'  + horseFormIndex}}"></label>
+                                                        <label class="text" for="{{ 'loss_of_use'  + horseFormIndex}}">Loss of Use
+                                                            <a href="javascript:void(0)" title="{{LOSS_OF_USE_HELP}}"><i class="fa fa-question-circle fa-lg"></i></a>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <input
+                                                        [formControl]="horseQuoteControl.controls['isVeterinaryFees']"
+                                                        class="magic-checkbox" type="checkbox" name="layout"
+                                                        id="{{ 'veterinary_fees'  + horseFormIndex}}" value="option" (change)="refreshSelectPicker()">
+                                                        <label for="{{ 'veterinary_fees'  + horseFormIndex}}"></label>
+                                                        <label class="text" for="{{ 'veterinary_fees'  + horseFormIndex}}">Veterinary Fees</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div *ngIf="horseQuoteControl.controls['isVeterinaryFees'].value" class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Indemnity Limit</label>
+                                                    <select
+                                                        [formControl]="horseQuoteControl.controls['coverIndemnityLimit']"
+                                                        class="selectpicker" (change)="onCoverIndemnityLimitSelect(horseFormIndex)">
+                                                        <option
+                                                            *ngFor="let liability of sharedService.coverSelectionPersonalLiabilityDropDown | order : ['+value']"
+                                                            [ngValue]="liability">{{ liability.value }}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="horseQuoteControl.controls['isVeterinaryFees'].value" class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label class="control-label">Excess</label>
+                                                    <select
+                                                        [formControl]="horseQuoteControl.controls['coverExcess']"
+                                                        class="selectpicker">
+                                                        <option
+                                                            *ngFor="let excess of sharedService.coverSelectionExcessDropDown | order : ['+value']"
+                                                            [ngValue]="excess">{{ excess.value }}
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="horseQuoteControl.controls['isVeterinaryFees'].value" class="col-sm-4">
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <input
+                                                        [formControl]="horseQuoteControl.controls['isCoInsuranceDiagnosticInvestigation']"
+                                                        class="magic-checkbox" type="checkbox" name="layout"
+                                                        id="{{ 'diagnostic_investigation'  + horseFormIndex}}" value="option">
+                                                        <label for="{{ 'diagnostic_investigation'  + horseFormIndex}}"></label>
+                                                        <label class="text" for="{{ 'diagnostic_investigation'  + horseFormIndex}}">20% Co-Insurance for Lameness Diagnostics
+                                                            <a href="javascript:void(0)"
+                                                                title="{{CO_INSURANCE_DIAGNOSTIC_TOOLTIP}}"><i class="fa fa-question-circle fa-lg">
+                                                            </i></a>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Add-On Selection Section -->
+                                <div class="panel panel-default add-selection">
+                                    <div class="panel-body">
+                                        <h3>Add-On Selection</h3>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <input
+                                                        [formControl]="horseQuoteControl.controls['isPersonalLiabilityAddOn']"
+                                                        class="magic-checkbox" type="checkbox" name="layout"
+                                                        id="{{ 'personal_liability_addon'  + horseFormIndex}}" value="option" (change)="refreshSelectPicker()">
+                                                        <label for="{{ 'personal_liability_addon'  + horseFormIndex}}"></label>
+                                                        <label class="text" for="{{ 'personal_liability_addon'  + horseFormIndex}}">Personal Liability</label>
+                                                    </div>
+                                                    <div *ngIf="horseQuoteControl.controls['isPersonalLiabilityAddOn'].value">
+                                                        <label class="control-label">Indemnity Limit</label>
+                                                        <select
+                                                            [formControl]="horseQuoteControl.controls['addOnIndemnityLimit']"
+                                                            class="selectpicker">
+                                                            <option
+                                                                *ngFor="let addOnPersonalLiability of sharedService.addOnSelectionPersonalLiabilityDropDown"
+                                                                [ngValue]="addOnPersonalLiability">{{ addOnPersonalLiability.value }}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <input
+                                                        [formControl]="horseQuoteControl.controls['isPersonalAccidentAddOn']"
+                                                        class="magic-checkbox" type="checkbox" name="layout"
+                                                        id="{{ 'personal_accident'  + horseFormIndex}}" value="option" (change)="refreshSelectPicker()">
+                                                        <label for="{{ 'personal_accident'  + horseFormIndex}}"></label>
+                                                        <label class="text" for="{{ 'personal_accident'  + horseFormIndex}}">Personal Accident</label>
+                                                    </div>
+                                                    <div *ngIf="horseQuoteControl.controls['isPersonalAccidentAddOn'].value">
+                                                        <label class="control-label">Indemnity Limit</label>
+                                                        <select
+                                                            [formControl]="horseQuoteControl.controls['addOnIndemnityLimits']"
+                                                            class="selectpicker">
+                                                            <option
+                                                                *ngFor="let addOnPersonalAccident of sharedService.addOnSelectionPersonalAccidentDropDown"
+                                                                [ngValue]="addOnPersonalAccident">{{ addOnPersonalAccident.value }}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <input
+                                                        [formControl]="horseQuoteControl.controls['isLegalExpenses']"
+                                                        class="magic-checkbox" type="checkbox" name="layout"
+                                                        id="{{ 'legal_expenses'  + horseFormIndex}}" value="option">
+                                                        <label for="{{ 'legal_expenses'  + horseFormIndex}}"></label>
+                                                        <label class="text" for="{{ 'legal_expenses'  + horseFormIndex}}">Legal Expenses <a href="javascript:void(0)"
+                                                            title="{{LEGAL_EXPENSES_TOOLTIP}}"><i class="fa fa-question-circle fa-lg">
+                                                        </i></a></label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <!-- "saddleryOrTrack" and "isTrailersOrHorseDrawnVehicles" Removed from here and make it common -->
+                                            <!-- <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <div class="checkbox">
+                                                        <input
+                                                        [formControl]="horseQuoteControl.controls['saddleryOrTrack']"
+                                                        class="magic-checkbox" type="checkbox" name="layout"
+                                                        id="{{ 'saddlery_track'  + horseFormIndex}}" value="option" (change)="refreshSelectPicker()">
+                                                        <label for="{{ 'saddlery_track'  + horseFormIndex}}"></label>
+                                                        <label class="text" for="{{ 'saddlery_track'  + horseFormIndex}}">Saddlery/Track
+                                                            <a href="javascript:void(0)"
+                                                                title="{{ SADDLEY_AND_TRACK_TOOLTIP }}"><i class="fa fa-question-circle fa-lg">
+                                                            </i></a>
+                                                        </label>
+                                                    </div>
+                                                    <div *ngIf="horseQuoteControl.controls['saddleryOrTrack'].value">
+                                                        <label class="control-label">Value of items (£)</label>
+                                                        <input [formControl]="horseQuoteControl.controls['addOnValueOfItems']" type="text" name="" class="form-control"
+                                                        (keypress)="checkNumberFormat($event)">
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--  Quote Me! button -->
+                            <div class="col-sm-12 text-center">
+                                <button class="btn btn-hollow-green"
+                                [disabled]="!(quoteForms.controls['policyHolderFirstName'].valid &&
+                                quoteForms.controls['policyHolderLastName'].valid &&
+                                quoteForms.controls['criminalConvictions'].valid)"
+                                (click)="showQuote(horseFormIndex)">Quote Me!</button>
+                                
+                                <!-- {{ quoteForms.valid }} -->
+                                <!-- {{ quoteForms.controls.horseQuotesArray['controls'][horseFormIndex].valid }}
+                                {{ horseQuoteControl.hasError('required') }} -->
+                                
+                                <!-- [disabled]="!userForm.valid -->
+                            </div>
+                            <!-- Quotes plans -->
+                            <section *ngIf="(quoteForms.controls['policyHolderFirstName'].valid &&
+                                quoteForms.controls['policyHolderLastName'].valid &&
+                                quoteForms.controls['criminalConvictions'].valid) &&
+                                horseQuoteControl.controls['isQuoteMe'].value" class="price-table-section"
+                                [ngClass]="{'price-table-center-section' : ( horseQuoteControl.controls['isLossOfUse'].value ||
+                                horseQuoteControl.controls['ageOfHorse'].value > horseMaxYearAgeLimit )}">
+                                <div class="col-sm-6 col-md-5 col-md-offset-1 col-lg-4 col-lg-offset-2">
+                                    <div class="columns" *ngIf="!horseQuoteControl.controls['isLossOfUse'].value">
+                                        <ul class="price list-unstyled">
+                                            <li class="header">AEIO <sub>Cover</sub> <span class="pull-right">Help <a href="javascript:void(0);"><i class="fa fa-question-circle"></i></a></span></li>
+                                            <li class="highlight">Loss of Horse <span class="pull-right">£ 700</span></li>
+                                            <li class="highlight">Veternary Fees <span class="pull-right">£ 1200</span></li>
+                                            <li class="highlight">Trailer Insurance <span class="pull-right">£ 630</span></li>
+                                            <li class="highlight">Legal Expenses <span class="pull-right">£ 120</span></li>
+                                            <li class="highlight text-medium">Total Premium <span class="pull-right">£ 2650</span></li>
+                                            <li class="highlight">+ IPT(12%) <span class="pull-right">£ 318</span></li>
+                                            <li class="highlight">+ Peliwica Underwriting Fee <span class="pull-right">£ 80</span></li>
+                                            <li class="highlight text-medium">Amount Payble <span class="pull-right">£ 3048</span></li>
+                                            <li class="grey"><button class="btn btn-block btn-grey"
+                                                (click)="goToPolicyHolderDetails()" [disabled]="!quoteForms.valid">Accept and Proceed to the next Step</button>
+                                                <button class="btn btn-block btn-green" (click)="addHorseQuote()">Accept and add an Additional Horse</button>
+                                                <button class="btn btn-block btn-hollow-grey">Save and/or Email Indicative Quote</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-5 col-lg-4">
+                                    <div class="columns"
+                                        *ngIf="horseQuoteControl.controls['ageOfHorse'].value <= horseMaxYearAgeLimit">
+                                        <ul class="price full-plan list-unstyled">
+                                            <li class="header">Full <sub>Cover</sub> <span class="pull-right">Help <a href="javascript:void(0);"><i class="fa fa-question-circle"></i></a></span></li>
+                                            <li class="highlight">Loss of Horse <span class="pull-right">£ 700</span></li>
+                                            <li class="highlight">Veternary Fees <span class="pull-right">£ 1200</span></li>
+                                            <li class="highlight">Trailer Insurance <span class="pull-right">£ 630</span></li>
+                                            <li class="highlight">Legal Expenses <span class="pull-right">£ 120</span></li>
+                                            <li class="highlight text-medium">Total Premium <span class="pull-right">£ 2650</span></li>
+                                            <li class="highlight">+ IPT(12%) <span class="pull-right">£ 318</span></li>
+                                            <li class="highlight">+ Peliwica Underwriting Fee <span class="pull-right">£ 80</span></li>
+                                            <li class="highlight text-medium">Amount Payble <span class="pull-right">£ 3048</span></li>
+                                            <li class="grey"><button class="btn btn-block btn-grey" (click)="goToPolicyHolderDetails()" [disabled]="!quoteForms.valid">Accept and Proceed to the next Step</button>
+                                                <button class="btn btn-block btn-green" (click)="addHorseQuote()">Accept and add an Additional Horse</button>
+                                                <button class="btn btn-block btn-hollow-grey">Save and/or Email Indicative Quote</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    
+                    <!-- Need to set Premium Breakdown common for all horses -->
+                    <div *ngIf="showPremiumBreakDown" class="panel panel-default document-for-horsename quote-summary premium-breakdown">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-12 premium-breakdown">
+                                    <div class="well">
+                                        <h3>Total Premium Breakdown</h3>
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Policy premium</td>
+                                                            <td>£ 3,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Insurance Premium Tax (12%)</td>
+                                                            <td>£ 400</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Peliwica Underwriting fee</td>
+                                                            <td>£ 1,080</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <table class="table">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>Broker Commission</td>
+                                                            <td>£ 500</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 premium-total">
+                                    <div class="well">
+                                        <h4>Total Price for Insurance: <strong>Total: £ 5,000</strong></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

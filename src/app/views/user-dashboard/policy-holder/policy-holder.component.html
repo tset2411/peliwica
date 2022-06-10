@@ -1,0 +1,264 @@
+<section class="obtain-quote-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2 class="text-center"><span>Step 2</span>Policyholder Details</h2>
+            </div>
+        </div>
+        <div class="row">
+            <form [formGroup]="policyHolderForm">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Title *</label>
+                                        <select class="selectpicker" formControlName= "title">
+                                            <option *ngFor= "let prefix of sharedService.namePrefix" [ngValue]="prefix">{{ prefix.value }}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">First Name *</label>
+                                        <input type="text" name="" class="form-control" formControlName="firstName"
+                                        [ngClass]="{'has-error' : policyHolderForm.controls['firstName'].touched && (!policyHolderForm.controls['firstName'].valid ) }">
+                                    </div>
+                                    <label class="has-error" *ngIf="policyHolderForm.controls['firstName'].hasError('required') &&
+                                        policyHolderForm.controls['firstName'].touched">
+                                        First name is required!
+                                    </label>
+                                    <label class="has-error" *ngIf="policyHolderForm.controls['firstName'].hasError('maxlength') &&
+                                        policyHolderForm.controls['firstName'].touched">
+                                        The first name can be 30 characters long!
+                                    </label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Last Name *</label>
+                                        <input type="text" name="" class="form-control" formControlName="lastName"
+                                        [ngClass]="{'has-error' : policyHolderForm.controls['lastName'].touched && (!policyHolderForm.controls['lastName'].valid ) }">
+                                    </div>
+                                    <label class="has-error" *ngIf="policyHolderForm.controls['lastName'].hasError('required') &&
+                                        policyHolderForm.controls['lastName'].touched">
+                                        Last name is required!
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Middle Name</label>
+                                        <input type="text" name="" class="form-control" formControlName="middleName">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Date of Birth Policyholder *</label>
+                                        <input type="text" name="" #dp="bsDatepicker"
+                                        class="form-control" formControlName="dateOfBirth" bsDatepicker
+                                        (bsValue)="birthDateMaxDate"
+                                        [maxDate]="birthDateMaxDate"
+                                        [bsConfig]="{ dateInputFormat: 'DD/MM/YYYY' }"
+                                        [ngClass]="{'has-error' : policyHolderForm.controls['dateOfBirth'].touched && (!policyHolderForm.controls['dateOfBirth'].valid ) }">
+                                    </div>
+                                    <label class="has-error" *ngIf="policyHolderForm.controls['dateOfBirth'].hasError('required') &&
+                                        policyHolderForm.controls['dateOfBirth'].touched">
+                                        Date of birth is required!
+                                    </label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Occupation *</label>
+                                        <input type="text" name="" class="form-control"  formControlName="occupation"
+                                        [ngClass]="{'has-error' : policyHolderForm.controls['occupation'].touched && (!policyHolderForm.controls['occupation'].valid ) }">
+                                    </div>
+                                    <label class="has-error" *ngIf="policyHolderForm.controls['occupation'].hasError('required') &&
+                                        policyHolderForm.controls['occupation'].touched">
+                                        Occupation is required!
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Email Address *</label>
+                                        <input type="text" name="" class="form-control" formControlName="email"
+                                        [ngClass]="{'has-error' : policyHolderForm.controls['email'].touched && (!policyHolderForm.controls['email'].valid ) }">
+                                    </div>
+                                    <label class="has-error" *ngIf="policyHolderForm.controls['email'].hasError('required') &&
+                                        policyHolderForm.controls['email'].touched">
+                                        Email address is required!
+                                    </label>
+                                    <label class="has-error" *ngIf="policyHolderForm.controls['email'].hasError('pattern') &&
+                                        policyHolderForm.controls['email'].touched">
+                                        Invalid email!
+                                    </label>
+                                    <label class="has-error" *ngIf="policyHolderForm.controls['email'].hasError('maxlength') &&
+                                        policyHolderForm.controls['email'].touched">
+                                        Email can be 40 characters long!
+                                    </label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Confirm Email Address *</label>
+                                        <input type="text" name="" class="form-control" formControlName="confirmEmail"
+                                        (blur)="validateEmail()"
+                                        [ngClass]="{'has-error' : policyHolderForm.controls['confirmEmail'].touched && (!policyHolderForm.controls['confirmEmail'].valid ) }">
+                                    </div>
+                                    <label class="has-error" *ngIf="policyHolderForm.controls['confirmEmail'].hasError('required') &&
+                                        policyHolderForm.controls['confirmEmail'].touched">
+                                        Confirm email is required!
+                                    </label>
+                                    <label class="has-error" *ngIf="policyHolderForm.controls['confirmEmail'].hasError('pattern') &&
+                                        policyHolderForm.controls['confirmEmail'].touched">
+                                        Invalid email!
+                                    </label>
+                                    <label class="has-error" *ngIf="confirmEmailErrorExist && !policyHolderForm.controls['confirmEmail'].hasError('pattern')">
+                                        Email does't matched.
+                                    </label>
+                                    <label class="has-error" *ngIf="policyHolderForm.controls['confirmEmail'].hasError('maxlength') &&
+                                        policyHolderForm.controls['confirmEmail'].touched">
+                                        Email can be 40 characters long!
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Mobile Contact Number *</label>
+                                        <input type="text" name="" class="form-control" formControlName="mobileContactNumber"
+                                        (keypress)="checkNumberFormat($event)"
+                                        [ngClass]="{'has-error' : policyHolderForm.controls['mobileContactNumber'].touched && (!policyHolderForm.controls['mobileContactNumber'].valid ) }">
+                                    </div>
+                                    <label class="has-error" *ngIf="policyHolderForm.controls['mobileContactNumber'].hasError('required') &&
+                                        policyHolderForm.controls['mobileContactNumber'].touched">
+                                        Mobile contact number is required!
+                                    </label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Home Contact Number</label>
+                                        <input type="text" name="" class="form-control" formControlName="homeContactNumber"
+                                        (keypress)="checkNumberFormat($event)">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="form-group dropdown-main">
+                                        <label class="control-label">Postcode *</label>
+                                        <input type="text" name="" class="form-control" formControlName="postCode"
+                                        (keyup)="checkAddressFromPostCode()"
+                                        [ngClass]="{'has-error' : policyHolderForm.controls['postCode'].touched && (!policyHolderForm.controls['postCode'].valid ) }">
+                                       
+                                        <div *ngIf="postCodeSearchedAddress.length > 0" class="address-dropdown">
+                                            <ul class="list-unstyled" *ngIf="postCodeSearchedAddress.length > 0">
+                                                <li *ngFor = "let address of postCodeSearchedAddress; let currentIndex = index " (click)="setSearchedPostcodeAddress(currentIndex)">
+                                                <i class="fa fa-map-marker fa-2x"></i>
+                                                    {{ createAndGetAddress(currentIndex) }}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        
+                                    </div>
+                                    <label class="has-error" *ngIf="policyHolderForm.controls['postCode'].hasError('required') &&
+                                        policyHolderForm.controls['postCode'].touched">
+                                        Postcode is required!
+                                    </label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">Flat Number</label>
+                                        <input type="text" name="" class="form-control" formControlName="flatNumber">
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group">
+                                        <label class="control-label">House Name or Number</label>
+                                        <input type="text" name="" class="form-control" formControlName="houseNumber">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Address Line 1 *</label>
+                                        <input type="text" name="" class="form-control" formControlName="addressLine1"
+                                        [ngClass]="{'has-error' : policyHolderForm.controls['addressLine1'].touched && (!policyHolderForm.controls['addressLine1'].valid ) }">
+                                    </div>
+                                    <label class="has-error" *ngIf="policyHolderForm.controls['addressLine1'].hasError('required') &&
+                                        policyHolderForm.controls['addressLine1'].touched">
+                                        Address is required!
+                                    </label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Address Line 2</label>
+                                        <input type="text" name="" class="form-control" formControlName="addressLine2">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Town *</label>
+                                        <input type="text" name="" class="form-control" formControlName="town"
+                                        [ngClass]="{'has-error' : policyHolderForm.controls['town'].touched && (!policyHolderForm.controls['town'].valid ) }">
+                                    </div>
+                                    <label class="has-error" *ngIf="policyHolderForm.controls['town'].hasError('required') &&
+                                        policyHolderForm.controls['town'].touched">
+                                        Town is required!
+                                    </label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Country *</label>
+                                        <input type="text" name="" class="form-control" formControlName="country"
+                                        [ngClass]="{'has-error' : policyHolderForm.controls['country'].touched && (!policyHolderForm.controls['country'].valid ) }">
+                                    </div>
+                                    <label class="has-error" *ngIf="policyHolderForm.controls['country'].hasError('required') &&
+                                        policyHolderForm.controls['country'].touched">
+                                        Country is required!
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default confirm-declaration">
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3>Please confirm the Customer has agreed to the statement below </h3>
+                                    <div class="checkbox">
+                                        <input class="magic-checkbox" type="checkbox" name="layout"
+                                        [(ngModel)]="formDataService.isAcceptTermsInPolicyHolder"
+                                        id="yes1" [ngModelOptions]="{standalone: true}">
+                                        <label for="yes1"></label>
+                                        <label class="text" for="yes1">Yes</label>
+                                    </div>
+                                    <p>Policy Holder has confirmed privacy policy and GDPR terms of use.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Buttons -->
+                    <div class="text-right btm-btn">
+                        <button type="button" class="btn btn-grey" (click)="goToQuoteDetailsForm()" >Previous</button>
+                        <button type="button" class="btn btn-green" (click)="goToHorseDetailsForm()"
+                        [disabled]="!policyHolderForm.valid || !formDataService.isAcceptTermsInPolicyHolder">Proceed</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

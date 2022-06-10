@@ -1,0 +1,306 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face {
+ font-family: 'Montserrat-Light';
+ src: url('../fonts/Montserrat-Light.eot');
+ src: url('../fonts/Montserrat-Light.woff2') format('woff2'), url('../fonts/Montserrat-Light.woff') format('woff'), url('../fonts/Montserrat-Light.ttf') format('truetype'), url('../fonts/Montserrat-Light.svg#Montserrat-Light') format('svg'), url('../fonts/Montserrat-Light.eot?#Montserrat-Light') format('embedded-opentype');
+ font-weight: normal;
+ font-style: normal;
+}
+@font-face {
+ font-family: 'Montserrat-SemiBold';
+ src: url('../fonts/Montserrat-SemiBold.eot');
+ src: url('../fonts/Montserrat-SemiBold.woff2') format('woff2'), url('../fonts/Montserrat-SemiBold.woff') format('woff'), url('../fonts/Montserrat-SemiBold.ttf') format('truetype'), url('../fonts/Montserrat-SemiBold.svg#Montserrat-SemiBold') format('svg'), url('../fonts/Montserrat-SemiBold.eot?#Montserrat-SemiBold') format('embedded-opentype');
+ font-weight: normal;
+ font-style: normal;
+}
+@font-face {
+ font-family: 'Poppins-Medium';
+ src: url('../fonts/Poppins-Medium.eot');
+ src: url('../fonts/Poppins-Medium.woff2') format('woff2'), url('../fonts/Poppins-Medium.woff') format('woff'), url('../fonts/Poppins-Medium.ttf') format('truetype'), url('../fonts/Poppins-Medium.svg#Poppins-Medium') format('svg'), url('../fonts/Poppins-Medium.eot?#Poppins-Medium') format('embedded-opentype');
+ font-weight: normal;
+ font-style: normal;
+}
+@font-face {
+ font-family: 'Poppins-Bold';
+ src: url('../fonts/Poppins-Bold.eot');
+ src: url('../fonts/Poppins-Bold.woff2') format('woff2'), url('../fonts/Poppins-Bold.woff') format('woff'), url('../fonts/Poppins-Bold.ttf') format('truetype'), url('../fonts/Poppins-Bold.svg#Poppins-Bold') format('svg'), url('../fonts/Poppins-Bold.eot?#Poppins-Bold') format('embedded-opentype');
+ font-weight: normal;
+ font-style: normal;
+}
+@font-face {
+ font-family: 'Poppins-SemiBold';
+ src: url('../fonts/Poppins-SemiBold.eot');
+ src: url('../fonts/Poppins-SemiBold.woff2') format('woff2'), url('../fonts/Poppins-SemiBold.woff') format('woff'), url('../fonts/Poppins-SemiBold.ttf') format('truetype'), url('../fonts/Poppins-SemiBold.svg#Poppins-SemiBold') format('svg'), url('../fonts/Poppins-SemiBold.eot?#Poppins-SemiBold') format('embedded-opentype');
+ font-weight: normal;
+ font-style: normal;
+}
+@font-face {
+ font-family: 'Poppins-Regular';
+ src: url('../fonts/Poppins-Regular.eot');
+ src: url('../fonts/Poppins-Regular.woff2') format('woff2'), url('../fonts/Poppins-Regular.woff') format('woff'), url('../fonts/Poppins-Regular.ttf') format('truetype'), url('../fonts/Poppins-Regular.svg#Poppins-Regular') format('svg'), url('../fonts/Poppins-Regular.eot?#Poppins-Regular') format('embedded-opentype');
+ font-weight: normal;
+ font-style: normal;
+}
+
+body{font-family: 'Poppins-Regular';}
+button, a{-webkit-transition: all .6s ease-in-out; -moz-transition: all .6s ease-in-out; -o-transition: all .6s ease-in-out; -ms-transition: all .6s ease-in-out; transition:all .6s ease-in-out;}
+button:focus, button:hover, a:focus, a:hover{text-decoration:none; outline: none !important; outline-width: inherit !important;}
+.bootstrap-select.btn-group .dropdown-toggle .caret {width: 10px;height: 10px;border: none;font-family: FontAwesome; top:22%;}
+.bootstrap-select.btn-group .dropdown-toggle .caret:before {content: "\f107";}
+
+/*Button CSS Start*/
+.btn-hollow-green{font-family: 'Poppins-Medium';background-color: inherit; border-radius: inherit;font-size:16px; color: #2bb673;border:1px solid #2bb673;}
+.btn-hollow-green:focus, .btn-hollow-green:hover{color:#2bb673;}
+.btn-grey{font-size: 16px; color:#fff;font-family: 'Poppins-Medium';background-color:#6e6f73;padding: 14px 12px;}
+.btn-grey:focus, .btn-grey:hover{color: #fff;}
+.btn-green{font-size: 16px; color:#fff;font-family: 'Poppins-Medium';background-color:#2bb673;padding: 14px 12px;}
+.btn-green:focus, .btn-green:hover{color: #fff;}
+.btn-hollow-grey{font-family: 'Poppins-Medium';background-color: inherit;font-size:16px; color: #6e6f73;border:1px solid #6e6f73;padding: 14px 12px;}
+.btn-hollow-grey:focus, .btn-hollow-grey:hover{color:#6e6f73;}
+/*Button CSS End*/
+
+/*Checkbox and Radio CSS Start*/
+@keyframes hover-color {
+	from {
+	border-color: #c0c0c0; }
+	to {
+	border-color: #2bb673; } 
+}
+
+.magic-radio,
+.magic-checkbox {position: absolute;display: none; }
+.magic-radio[disabled],
+.magic-checkbox[disabled] {cursor: not-allowed; }
+.magic-radio + label,
+.magic-checkbox + label {position: relative;/*display: block;*/padding-left:6px;cursor: pointer;vertical-align: middle; }
+.magic-radio + label{padding-left: 30px;}
+.magic-radio + label:hover:before,
+.magic-checkbox + label:hover:before {animation-duration: 0.4s;animation-fill-mode: both;animation-name: hover-color; }
+.magic-radio + label:before,
+.magic-checkbox + label:before {position: absolute;top: 0;left: 0;display: inline-block;width: 20px;height: 20px;content: '';background-color: #e3e3e3; }
+.magic-radio + label:after,
+.magic-checkbox + label:after {position: absolute;display: none;content: ''; }
+.magic-radio[disabled] + label,
+.magic-checkbox[disabled] + label {cursor: not-allowed;color: #e4e4e4; }
+.magic-radio[disabled] + label:hover, .magic-radio[disabled] + label:before, .magic-radio[disabled] + label:after,
+.magic-checkbox[disabled] + label:hover,
+.magic-checkbox[disabled] + label:before,
+.magic-checkbox[disabled] + label:after {cursor: not-allowed; }
+.magic-radio[disabled] + label:hover:before,
+.magic-checkbox[disabled] + label:hover:before {border: 1px solid #e4e4e4;animation-name: none; }
+.magic-radio[disabled] + label:before,
+.magic-checkbox[disabled] + label:before {border-color: #e4e4e4; }
+.magic-radio:checked + label:before,
+.magic-checkbox:checked + label:before { animation-name: none; }
+.magic-radio:checked + label:after,
+.magic-checkbox:checked + label:after {display: block;}
+.magic-radio + label:before { border-radius: 50%;}
+.magic-radio + label:after {top: 5px;left: 5px; width: 10px; height: 10px;border-radius: 50%;background: #2bb673;}
+/*.magic-radio:checked + label:before {border: 1px solid #3e97eb;}*/
+.magic-radio:checked[disabled] + label:before {border: 1px solid #c9e2f9;}
+.magic-radio:checked[disabled] + label:after {background: #c9e2f9;}
+.magic-checkbox + label:before {border-radius: 3px; }
+.magic-checkbox + label:after {top: 2px;left: 7px;box-sizing: border-box;width: 6px; height: 12px; transform: rotate(45deg);
+  border-width: 2px; border-style: solid; border-color: #fff; border-top: 0;border-left: 0; }
+.magic-checkbox:checked + label:before {border: #3e97eb;background: #2bb673; }
+.magic-checkbox:checked[disabled] + label:before {border: #c9e2f9; background: #c9e2f9; }
+/*Checkbox and Radio CSS End*/
+
+/*Header CSS*/
+.navbar{margin-bottom: 0;}
+.navbar-top{background-color: #2bb673;}
+.social-icon{margin-bottom: 0;}
+.social-icon li{padding: 10px 5px;}
+.social-icon li a{ color: #fff; }
+.navbar-top-right{margin-bottom: 0;}
+.navbar-top-right > li{padding: 10px 12px;border-right: 1px solid #97dbba;}
+.navbar-top-right > li:last-child{border-right: none; padding-right: 0;}
+.navbar-top-right > li > a{color: #fff; font-size: 14px;}
+.navbar-top-right > li.select-language{padding-top:0px;padding-bottom: 0px;}
+.navbar-top-right > li.select-language > .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){width: auto;}
+.navbar-top-right > li.select-language > .bootstrap-select.btn-group .dropdown-toggle .caret{right: 0;}
+.navbar-top-right > li.select-language .bootstrap-select .btn-default{background:none;border:none; text-align: right; color: #fff;padding:10px 12px; box-shadow: none;}
+.navbar-top-right > li.select-language .bootstrap-select .dropdown-toggle:focus{ outline:none !important; outline:none !important; outline-offset: inherit;}
+.navbar-top-right li .dropdown-menu{ border-radius: inherit;}
+.navbar-brand{height: auto;}
+.navbar-nav{margin-top:30px;}
+.navbar-nav li a{color: #6e6f72; text-transform: uppercase; font-size: 15px;font-family: 'Poppins-Medium';}
+.navbar-nav li a:focus, .navbar-nav li a:hover, .navbar-nav.nav .open>a, .navbar-nav.nav .open>a:focus, .navbar-nav.nav .open>a:hover{background-color: inherit;}
+.navbar-nav li.active a{color: #2bb673;}
+.navbar-nav li.dropdown .caret {width: 10px;height: 10px;border: none;font-family: FontAwesome;margin-top: -12px;}
+.navbar-nav li.dropdown .caret:before {content: "\f107";}
+.navbar-toggle{border-color:#2bb673;margin-top: 18px;}
+.navbar-toggle .icon-bar{background-color:#2bb673;}
+/*Header CSS End*/
+/*Banner CSS*/
+.banner-section{ background-image: url(../images/banner.jpg); background-repeat: no-repeat;background-size: cover;background-position: center;height:540px; display: flex; align-items: center; width: 100%;}
+.banner-section h1{font-size: 38px; text-transform: uppercase;font-family: 'Montserrat-Light'; color: #fff; }
+.banner-section h1 span{font-family: 'Montserrat-SemiBold';}
+/*Banner CSS End*/
+/*Step CSS*/
+.obtain-quote-section{padding-bottom: 30px;}
+.obtain-quote-section h2{font-size: 24px; color: #6b6b6b;font-family: 'Poppins-Medium'; line-height: 30px; margin-top: 70px;margin-bottom: 26px;}
+.obtain-quote-section h2 span{font-size: 16px; color: #2bb673;font-family:'Poppins-Regular'; display: block;}
+.obtain-quote-section .panel-default{border:none;box-shadow: none; border-radius:inherit; margin-bottom: 0;}
+.obtain-quote-section .panel-default .panel-body{padding-left: 48px; padding-right: 48px;padding-top: 30px; padding-bottom: 15px;}
+.obtain-quote-section .panel-default:nth-child(2n+2){background-color:#f7f7f7;}
+.obtain-quote-section .panel-body .control-label{font-size: 15px; color: #6b6b6b; font-family:'Poppins-Medium';font-weight: normal;}
+.obtain-quote-section .panel-body .control-label a{color: #2bb673;}
+.obtain-quote-section .panel-body h6{color: #8e8e8e;font-size: 14px;}
+.obtain-quote-section .panel-body .radio, .obtain-quote-section .panel-body .checkbox{display: inline-flex;margin-right: 20px;}
+.obtain-quote-section .panel-body .radio:last-child, .obtain-quote-section .panel-body .checkbox:last-child{margin-right: 0;}
+.obtain-quote-section .panel-body .radio .text, .obtain-quote-section .panel-body .checkbox .text{color:#8e8e8e;font-size: 14px;}
+.obtain-quote-section .panel-body .radio .text a, .obtain-quote-section .panel-body .checkbox .text a{color: #2bb673;}
+.obtain-quote-section .panel-body h3{color: #000;font-size: 18px;font-family:'Poppins-Medium';margin-top: 0;margin-bottom: 30px;}
+.obtain-quote-section .panel-body .form-control{border-radius:inherit;border-color: #e3e3e3;height: 40px;font-size: 14px; color: #6b6b6b;box-shadow: none;}
+.obtain-quote-section .panel-body .form-control.has-error{border-color: #ff3c7e;}
+.obtain-quote-section .panel-body .row ~ .row{margin-top: 25px;}
+.obtain-quote-section .panel-body .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn){width: 100%;}
+.obtain-quote-section .panel-body .bootstrap-select .btn-default{border-radius:inherit;height: 40px;color: #6b6b6b;}
+.obtain-quote-section .panel-body .bootstrap-select .btn-default:focus, .obtain-quote-section .panel-body .bootstrap-select .btn-default:hover{background-color: #fff;box-shadow: none;outline:none !important; outline:none !important; outline-offset: inherit;}
+.obtain-quote-section .panel-body .bootstrap-select.open>.dropdown-toggle.btn-default, .obtain-quote-section .panel-body .bootstrap-select.open>.dropdown-toggle.btn-default:hover, .obtain-quote-section .panel-body .bootstrap-select .btn-default:active:hover{background-color: #fff; box-shadow: none;}
+.obtain-quote-section .panel-body .bootstrap-select.btn-group .dropdown-toggle .caret{top:24%;font-size: 18px;}
+.obtain-quote-section .panel.cover-selection .panel-body .row ~ .row .checkbox{margin-top:25px;}
+.obtain-quote-section .panel.add-selection .panel-body .control-label{display: block;}
+.obtain-quote-section .panel.add-selection .panel-body .checkbox{margin-bottom: 15px;}
+.obtain-quote-section .btn-hollow-green{background-color: #fff; text-transform: uppercase;min-width: 190px; line-height:32px; margin:20px 0;}
+.obtain-quote-section .btn-hollow-green:after, .obtain-quote-section .btn-hollow-green:before {border-top: 1px solid #e3e3e3;content: ""; position: absolute;
+  top:50%;bottom: 0; width: 40%;}
+.obtain-quote-section .btn-hollow-green:before{left: 0;}
+.obtain-quote-section .btn-hollow-green:after{right: 0;}
+.obtain-quote-section .document-for-horsename .panel-body h3{margin-bottom: 6px;}
+.document-for-horsename .well{border-radius: 0;box-shadow: none;background-color:#fff;/*margin-top:10px;*/ min-height:226px;}
+.document-for-horsename .well .control-label{margin-top: 8px;}
+.upload-btn-wrapper {position: relative;overflow: hidden;display: inline-block;}
+.upload-btn-wrapper input[type=file] {position: absolute;left: 0; width: 100%; height: 100%;top: 0;opacity: 0;}
+.document-for-horsename .well .btn{padding: 6px 12px;}
+.obtain-quote-section .document-for-horsename .panel-body .row ~ .row{margin-top: 0px;}
+
+.obtain-quote-section .panel-heading{padding:0; background-color:#f7f7f7;font-family:'Poppins-Medium'; font-size: 18px; color:#2bb673;
+border-radius: 0;border:1px solid #eaeaea; margin-top: 10px; margin-bottom: 10px;}
+.obtain-quote-section .panel-heading a .text-danger{margin-top: -1px; margin-left: 10px;}
+.obtain-quote-section .panel-heading a{padding:18px 38px; display: block;}
+.obtain-quote-section .panel-heading a .fa-plus{display: none;}
+.obtain-quote-section .panel-heading a.collapsed .fa-minus{display: none;}
+.obtain-quote-section .panel-heading a.collapsed .fa-plus{display: inline-block;}
+.obtain-quote-section .panel-heading i{float: right;}
+
+/*Step5 css*/
+.obtain-quote-section .quote-summary .panel-body .well h3{ border-bottom: 1px solid #e3e3e3; padding-bottom: 10px;}
+.obtain-quote-section .quote-summary .panel-body .well h3 .btn{font-size: 14px;padding: 0 12px;}
+.obtain-quote-section .quote-summary .panel-body .well .table{margin-top: 10px;margin-bottom: 0;}
+.obtain-quote-section .quote-summary .panel-body .well .table tr td{ border:0; padding:0px 4px; }
+.obtain-quote-section .quote-summary .panel-body .well .table tr.separate td{padding-top: 15px;}
+.obtain-quote-section .quote-summary .panel-body .well .table tr td:first-child{min-width:160px;max-width:160px;width:160px;font-family: 'Poppins-Medium';}
+.obtain-quote-section .quote-summary .panel-body .number-list{padding-left:18px;margin-bottom: 0;}
+.obtain-quote-section .quote-summary .panel-body .number-list li{margin-bottom: 5px;}
+.obtain-quote-section .quote-summary .panel-body .number-list li p{margin-bottom: 0;}
+.obtain-quote-section .quote-summary .panel-body .premium-total .well, .obtain-quote-section .quote-summary .panel-body .premium-breakdown .well{min-height: inherit;}
+.obtain-quote-section .quote-summary .panel-body .premium-total .well h4{margin: 0;}
+.obtain-quote-section .quote-summary .panel-body .premium-total .well h4 strong{font-family:'Poppins-Bold';display: inline-block; min-width: 200px;text-align: right; font-weight: normal; color: #000;}
+/*Step5 css End*/
+
+/*Step6 css*/
+.obtain-quote-section.thankyou-content .panel-body h4{font-size:32px;}
+.obtain-quote-section.thankyou-content .panel-body p a{color:#2bb673;}
+.thankyou-content h3 {font-size: 24px; color: #6b6b6b; font-family: 'Poppins-Medium'; line-height: 30px;
+ display: table;width: 100%;}
+.thankyou-content h3 span{display: block; text-align: right;}
+.thankyou-content h3 span a {padding: 0 10px;color: #2bb673;} 
+.thankyou-content .btn-hollow-grey{min-width: 220px; margin-top: 20px;}
+/*Step6 css End*/
+
+/*Step CSS End*/
+
+/*Step Tab CSS*/
+.board-inner {background-color:#f3f3f3;}
+.board-inner .nav-tabs { position: relative; margin-bottom: 0;}
+.board-inner .nav-tabs li{vertical-align: middle;}
+.board-inner .nav-tabs li a{border-bottom: none;border-top: none; padding:20px 0;font-family: 'Poppins-Medium';font-size: 16px;color: #2f2f2f; text-transform: uppercase; text-align: left;display: flex;
+ align-items: center; border-right: 1px solid #fff;min-width: 130px;border-radius: 0;}
+.board-inner .nav-tabs li:last-child a{border-right: none;}
+.board-inner .nav-tabs li a span{font-family:'Poppins-Bold';font-size: 75px;color:#fff; opacity:0.7;line-height:59px; margin-left:-4px;}
+.board-inner .nav-tabs li a strong{font-weight: normal;font-family: 'Poppins-Medium';}
+.board-inner .nav-tabs li a.active{background-color:#2bb673; color: #fff;}
+.board-inner .nav-tabs li a.active span{opacity: 0.25;}
+.board-inner .nav-tabs li a.active:hover{}
+.board-inner .nav-tabs li a.active::after{content:''; position:absolute; left: 50%;margin-left: -12px;top:100%; width:0; height:0;
+border-left: 12px solid transparent;border-right: 12px solid transparent; border-top: 12px solid #2bb673;clear: both;}
+/*Step Tab CSS End*/
+
+/* Price Table CSS*/
+.price-table-section{padding-top:40px;margin-bottom: 60px; display: table;width: 100%;}
+.price-table-center-section .col-sm-6{ margin: 0 auto !important; display: table; float: none;}
+.price-table-section .columns { margin-bottom:20px; cursor:pointer;}
+.price-table-section .price {  box-shadow: 0 0px 15px 0 rgba(0,0,0,0.2); margin: 0;  padding: 0;border-bottom: 8px solid #d3d3d4;
+    -webkit-transition: 0.3s; transition: 0.3s; overflow: hidden; border-radius: 10px;}
+.price-table-section .price .header{font-size: 24px; color: #393939; font-family: 'Poppins-SemiBold';}
+.price-table-section .price .header sub{font-size: 18px;font-family:'Poppins-Medium';bottom: 0;}
+.price-table-section .price .header span{ font-size: 16px; color: #393939;font-family:'Poppins-Regular'; margin-top: 4px;}
+.price-table-section .price .header span a{color: #393939;}
+.price-table-section .price li { font-size: 15px; color: #6b6b6b; padding:14px 26px;font-family:'Poppins-Regular';}
+.price-table-section .price li:nth-child(2n+2){background-color:#f5f5f5;}
+.price-table-section .highlight { transition: 0.3s;}
+.price-table-section .highlight:hover {-webkit-transform:scale(1.08);transform:scale(1.08);}
+.price-table-section .price .grey {padding: 20px;}
+.price-table-section .price .grey .btn{margin-bottom: 16px;font-size: 15px;}
+.price-table-section .price .grey .btn:last-child{margin-bottom: 0;}
+.price-table-section .price li.text-medium{font-family:'Poppins-Medium';color: #2d2d2d;}
+.price-table-section .price .btn-hollow-grey{border-width: 2px;}
+.price-table-section .price.full-plan .header{color: #2bb673;}
+/* Price Table CSS End*/
+
+/* Footer CSS */
+.top-footer{background-color: #565656;padding: 30px 0;color: #fff;}
+.top-footer ul{color: #fff; margin-bottom: 30px;}
+.top-footer ul li a{font-size: 15px; color: #fff;}
+.top-footer a{color: #fff;}
+.top-footer .social-icon{margin-bottom: 0;}
+.top-footer .social-icon li{padding-top:0;padding-bottom:0;}
+.bottom-footer{padding-top:20px;padding-bottom: 20px;}
+.bottom-footer p{color: #6e6f72;font-size: 15px;}
+.bottom-footer p a{color: #2bb673;}
+.bottom-footer p:last-child a{color:#6e6f72;text-decoration: underline;}
+.bottom-footer p:last-child a:hover{text-decoration: none;}
+/* Footer CSS End*/
+
+/* Error  */
+.has-error {
+	color: red;
+	font-size: 12px;
+	font-weight: normal;
+}
+.obtain-quote-section .cover-selection .panel-body .row ~ .row{margin-top: 0;}
+.bootstrap-select.btn-group .dropdown-menu li a{    white-space: normal;}
+
+.btm-btn .btn-green, .btm-btn .btn-grey{padding: 8px 22px;}
+.btm-btn { margin-top: 20px;  }
+.upload-filename{font-size: 12px;}
+.policyholder-details .table{width: 49%; display:inline-table;}
+.document-for-horsename .well.policyholder-details{min-height: inherit; margin-bottom:0px;}
+.obtain-quote-section .premium-breakdown.panel-default{background-color:#fff;}
+.obtain-quote-section .panel-default.quote-summary .panel-body{ padding:10px 0;}
+.obtain-quote-section .premium-breakdown.panel-default.quote-summary .panel-body{padding-top: 10px}
+.obtain-quote-section .panel-body .saddley-items .row ~ .row {margin-top: 0;}
+.obtain-quote-section .panel-body .saddley-items h3{margin-top: 20px; margin-bottom: 10px;}
+.obtain-quote-section .panel-body .saddley-items h3 .btn-danger{margin-top:-6px;}
+.dropdown-main{position: relative;}
+.address-dropdown{ background: #fff; box-shadow: 0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12);
+    font-size: 12px; position: absolute; top: 65px; z-index: 1; width: 100%; cursor: pointer;max-height: 326px;
+    overflow: auto;}
+.address-dropdown i{margin-right: 10px;}
+.address-dropdown ul{width: 100%;}
+.address-dropdown ul li {display: flex; padding: 10px 15px; align-items: center;}
+.address-dropdown ul li:hover{background: rgba(0,0,0,.04);}
+.upload-agreement { vertical-align:top;margin-top: 4px;}
+.upload-agreement .upload-filename { display: inline-block; vertical-align: middle;}
+.upload-agreement .btn-hollow-grey{font-size: 14px; padding: 6px 12px;}
+.obtain-quote-section .quote-summary .panel-body .premium-breakdown .well h3{color:#2bb673;}
+.obtain-quote-section .quote-summary .panel-body .premium-total .well h4{color:#2bb673;font-family: 'Poppins-Medium';    font-size: 18px;}
+.obtain-quote-section .quote-summary .panel-body  .premium-breakdown .well .table tr td:first-child{min-width: 312px;  max-width: 312px;}
+.obtain-quote-section .panel-default.confirm-declaration .panel-body{padding-right: 0;padding-left: 0; padding-top: 0;}
+.obtain-quote-section .confirm-declaration .panel-body h3{ margin-bottom: 0; display: inline-block; vertical-align: super; margin-right: 10px;}
+.obtain-quote-section .confirm-declaration .panel-body .checkbox{margin-top: 0;margin-bottom: 0;}
+.obtain-quote-section .panel-default.confirm-declaration{background: inherit;}
+

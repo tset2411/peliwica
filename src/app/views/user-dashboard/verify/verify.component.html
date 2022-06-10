@@ -1,0 +1,267 @@
+<section class="obtain-quote-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<h2 class="text-center"><span>Step 5</span>Quote Summary</h2>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">
+				
+				<div class="panel panel-default document-for-horsename quote-summary">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-sm-12" *ngIf="formDataService.formData?.policyHolderFormData">
+								<div class="well policyholder-details">
+									<h3>Policyholder Details <button class="btn pull-right btn-sm btn-green" (click)="editPolicyHolderDetails()">Edit</button></h3>
+									<table class="table">
+										<tbody>
+											<tr>
+												<td>Broker details</td>
+												<td>John Smith</td>
+											</tr>
+											<tr>
+												<td>Name</td>
+												<td>
+													{{ formDataService.formData?.policyHolderFormData.firstName + ' ' + formDataService.formData?.policyHolderFormData.lastName}}
+												</td>
+											</tr>
+											<tr>
+												<td>Date of Birth</td>
+												<td>
+													{{ formDataService.formData?.policyHolderFormData.dateOfBirth | date: 'dd/MM/yyyy' }}
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<table class="table">
+										<tbody>
+											<tr>
+												<td>Email</td>
+												<td>
+												{{ formDataService.formData?.policyHolderFormData.email }}</td>
+											</tr>
+											<tr>
+												<td>Address</td>
+												<td>
+													{{ createAndGetFullAddress() }}
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<ng-container *ngFor="let horseData of formDataService.formData.horseDetailsFormData?.horseDetailsArray; let horseIndex = index; let firstHorse = first; ">
+				<!-- Accordian Header -->
+				<div class="row">
+					<div class="col-sm-12">
+						<div class="panel-heading" role="tab" id="{{ 'heading' + horseIndex}}">
+							<h4 class="panel-title">
+							<a role="button" data-toggle="collapse" data-parent="#accordion" id="collapse10"
+								href="#collapseOne{{horseIndex}}" aria-expanded="true"
+								attr.aria-controls="collapseOne{{horseIndex}}">
+								Horse {{ horseData.name ? horseData.name : '' }}<i class="fa fa-plus" aria-hidden="true"></i> <i class="fa fa-minus"></i>
+							</a>
+							</h4>
+						</div>
+					</div>
+				</div>
+				<!-- Accordian Body -->
+				<div id="{{'collapseOne'+horseIndex}}" class="panel-collapse collapse in" role="tabpanel"
+					attr.aria-controls="heading{{horseIndex}}">
+					<div class="panel panel-default document-for-horsename quote-summary">
+						<div class="panel-body">
+							<div class="row">
+								<div class="col-sm-12 col-md-6">
+									<div class="well">
+										<h3>Details of Horse
+										<button class="btn pull-right btn-sm btn-green" (click)="editHorseDetails()">Edit</button></h3>
+										<table class="table">
+											<tbody>
+												<tr>
+													<td>Name</td>
+													<td>{{ horseData.name ? horseData.name : '' }}</td>
+												</tr>
+												<tr>
+													<td>Date of Birth</td>
+													<td>
+														{{ formDataService.formData.quoteFormData.horseQuotesArray[horseIndex].horseDateOfBirth | date:'dd/MM/yyyy' }}
+													</td>
+												</tr>
+												<tr>
+													<td>Sex</td>
+													<td>
+													{{ horseData.sex ? horseData.sex.value : '' }}</td>
+												</tr>
+												<tr>
+													<td>Main Use</td>
+													<td>
+													{{ formDataService.formData.quoteFormData.horseQuotesArray[horseIndex].horseUsage ? formDataService.formData.quoteFormData.horseQuotesArray[horseIndex].horseUsage.value : '' }}</td>
+												</tr>
+												<tr class="separate">
+													<td>Passport Number</td>
+													<td>
+													{{ horseData.passportNo ? horseData.passportNo : '' }}</td>
+												</tr>
+												<tr>
+													<td>Microchip Number</td>
+													<td>
+													{{ horseData.microChipNo ? horseData.microChipNo : '' }}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="col-sm-12 col-md-6">
+									<div class="well">
+										<h3>Policy details </h3>
+										<table class="table">
+											<tbody>
+												<tr>
+													<td>Quotation Ref.no.</td>
+													<td>Q2004575</td>
+												</tr>
+												<tr>
+													<td>Sum Insured</td>
+													<td>£ 35.000</td>
+												</tr>
+												<tr class="separate">
+													<td colspan="2">Insurance Details</td>
+												</tr>
+												<tr>
+													<td>1. Policy</td>
+													<td>Horse Insurance</td>
+												</tr>
+												<tr >
+													<td>2. Policy Start Date</td>
+													<td>01.07.2017</td>
+												</tr>
+												<tr>
+													<td>3. Period of Cover</td>
+													<td>01.07.2017 - 30.06.2017</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="col-sm-12 col-md-6">
+									<div class="well">
+										<h3>Section of Cover </h3>
+										<table class="table">
+											<tbody>
+												<tr>
+													<td>Section 1</td>
+													<td>Loss of animals (pull value of horse throuh vets fees £200 excees~)</td>
+												</tr>
+												<tr>
+													<td>Section 2</td>
+													<td>£ 35.000</td>
+												</tr>
+												<tr>
+													<td>Section 3</td>
+													<td>Horse Insurance</td>
+												</tr>
+												<tr >
+													<td>Section 4</td>
+													<td>01.07.2017</td>
+												</tr>
+												<tr>
+													<td>Section 5</td>
+													<td>01.07.2017 - 30.06.2017</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="col-sm-12 col-md-6">
+									<div class="well">
+										<h3>Exclutions and/or Endorsements Applicable</h3>
+										<ol class="number-list">
+											<li>Cover is issued subject to a receipt of a 5 stage veterinary certificate.</li>
+											<li>Exclusions - <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters</p></li>
+										</ol>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				</ng-container>
+				
+				<div class="panel panel-default document-for-horsename quote-summary premium-breakdown">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-sm-12 premium-breakdown">
+								<div class="well">
+									<h3>Total Premium Breakdown</h3>
+									<div class="row">
+										<div class="col-sm-6">
+											<table class="table">
+												<tbody>
+													<tr>
+														<td>Policy premium</td>
+														<td>£ 3,000</td>
+													</tr>
+													<tr>
+														<td>Insurance Premium Tax (12%)</td>
+														<td>£ 400</td>
+													</tr>
+													<tr>
+														<td>Peliwica Underwriting fee</td>
+														<td>£ 1,080</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+										<div class="col-sm-6">
+											<table class="table">
+												<tbody>
+													<tr>
+														<td>Broker Commission</td>
+														<td>£ 500</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-12 premium-total">
+								<div class="well">
+									<h4>Total Price for Insurance: <strong>Total: £ 5,000</strong></h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-default confirm-declaration">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-sm-12">
+								<h3>Please confirm the Customer has agreed to the statement below </h3>
+								<div class="checkbox">
+									<input class="magic-checkbox" type="checkbox" name="layout"
+									[(ngModel)]="formDataService.isAcceptTermsInVerify"
+									id="yes1">
+									<label for="yes1"></label>
+									<label class="text" for="yes1">Yes</label>
+								</div>
+								<p>I declare that all information that I have disclosed, and all statements of fact I have answered have been done so in an honest and accurate manner, to the best of my knowledge and I will inform you as soon as possible if any of the disclosed information is inaccurate.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- buttons -->
+				<div class="text-right btm-btn">
+					<button class="btn btn-grey" (click)="goToStatementtOfFactForm()">Previous</button>
+					<button class="btn btn-green" [disabled]="!formDataService.isAcceptTermsInVerify" 
+					(click)="goToConfirmationForm()">Submit For Underwriting</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
